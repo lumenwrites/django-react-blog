@@ -1,0 +1,104 @@
+/* Bootstrap customize */
+
+.navbar {
+    margin-bottom: 0;
+    padding: 20px 0;
+}
+
+.page-header {
+    padding-bottom: 0;
+    margin: 0 0 20px 0;
+}
+
+.container {
+  max-width: 960px; /* or 950px */
+}
+
+
+.label-default {
+    color: rgba(0,0,0,.6);
+    background: rgba(0,0,0,.05);    
+}
+
+/* Main Elements */
+* {
+    font-family: "Noto Sans";
+}
+
+body, p {
+    font-size: 1.8em;
+    color: rgba(0,0,0,.8);
+}
+
+html, body, .app, .mainWrapper {
+   height:100%;
+}
+
+h2 a, h2 a:hover {
+    color: rgba(0,0,0,.8);
+    text-decoration: none;
+}
+
+.page {
+   min-height:calc(100% - 125px);
+   background: #fafafa;    
+}
+
+.footer {
+    background-color: #333333;
+    height: 40px;
+}
+
+hr {
+    margin-top: 0;
+}
+/* Post detail */
+.post {
+    padding: 0 40px 20px  40px;
+}
+
+.readMore {
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.44);
+}
+
+
+/* Helpers */
+.right {
+    float: right;
+}
+
+.bold {
+    font-weight:bold;
+}
+
+
+/* Editor */
+
+.postTitle {
+    padding: 24px 14px;
+    font-size: 20px;
+    border-bottom: none;
+}
+
+.postTags {
+    border-top:none;
+}
+
+.form-group {
+    margin-bottom: 0;
+}
+/* SimpleMDE */
+
+.editor-toolbar {
+    border-radius: 0;
+}
+
+.CodeMirror {
+    border-radius: 0;
+    border-bottom: none;
+}
+
+.editor-statusbar {
+    border: 1px solid #ddd;
+}
