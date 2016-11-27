@@ -2,7 +2,7 @@ This is a very simple blog built with Django, Django REST Framework, React/Redux
 
 You can check out the demo [here](). You can [login]() with username "admin" and password "1234" to try creating and editing posts(please be nice, don't post anything that might offend anybody).
 
-[Screenshots]
+![Screenshot](https://raw.githubusercontent.com/raymestalez/django-react-blog/master/assets/blog-screenshot.png)
 
 I have built this project by going through [this](https://www.udemy.com/react-redux/)  and [this](https://www.udemy.com/react-redux-tutorial/) awesome React courses, I highly recommend them to anybody who wants to learn React! And [this Django REST Framework course](https://teamtreehouse.com/library/django-rest-framework) really helped me to build the backend.
 
