@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { fetchPost, deletePost } from '../actions/index';
 
 import { PageHeader, Panel, Label, Button } from 'react-bootstrap';
+import { IndexLinkContainer, LinkContainer } from 'react-router-bootstrap';
 
 import Post from './post';
 
@@ -20,13 +21,6 @@ class PostDetail extends Component {
 	router: PropTypes.object
     };
 
-    onDelete() {
-	this.props.deletePost(this.props.params.slug)
-	    .then(() => {
-		this.context.router.push('/');
-	    });
-    }
-    
     render() {
 	const { post } = this.props;
 	if (!post) {
@@ -38,9 +32,12 @@ class PostDetail extends Component {
 	return (
 	    <div>
 		<br/>
-		<Button onClick={this.onDelete.bind(this)} className="right">
-		    Delete Post
-		</Button>
+		<LinkContainer to={{ pathname: "/post/"+this.props.params.slug+"/edit"}}>
+		    <Button className="right">
+			Edit Post
+		    </Button>
+		</LinkContainer>
+		
 		<Post title={post.title}
 		      body={post.body}
 		      tags={post.tags}/>
@@ -53,4 +50,4 @@ function mapStateToProps(state) {
     return { post:state.posts.post };
 }
 
-export default connect(mapStateToProps, { fetchPost, deletePost })(PostDetail);
+export default connect(mapStateToProps, { fetchPost })(PostDetail);

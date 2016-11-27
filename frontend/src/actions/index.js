@@ -5,6 +5,7 @@ export const FETCH_POSTS = 'FETCH_POSTS';
 export const FETCH_POST = 'FETCH_POST';
 export const CREATE_POST = 'CREATE_POST';
 export const DELETE_POST = 'DELETE_POST';
+export const UPDATE_POST = 'UPDATE_POST';
 export const ROOT_URL = 'http://localhost:8000/api/v1';
 
 export function fetchPosts() {
@@ -14,7 +15,8 @@ export function fetchPosts() {
 	axios.get(`${ROOT_URL}/posts/`)
 	     .then(response => {
 		 console.log(">>>> src/actions/index.js (promise):");
-		 console.log("Successfully fetched posts.Dispatching action FETCH_POSTS");	    
+		 console.log("Successfully fetched posts.Dispatching action FETCH_POSTS");
+
 		 dispatch({
 		     type: FETCH_POSTS,
 		     payload: response
@@ -31,7 +33,9 @@ export function fetchPost(slug) {
 	axios.get(`${ROOT_URL}/post/${slug}/`)
 	     .then(response => {
 		 console.log(">>>> src/actions/index.js (promise):");
-		 console.log("Successfully fetched post. Dispatching action FETCH_POST.");	    
+		 console.log("Successfully fetched post. Dispatching action FETCH_POST.");
+		 console.log(response.data.body);
+		 
 		 dispatch({
 		     type: FETCH_POST,
 		     payload: response
@@ -66,6 +70,31 @@ export function createPost(props) {
     }
 }
 
+
+export function updatePost(slug, props) {
+    // Get the saved token from local storage
+    console.log(">>>> src/actions/index.js:");
+    console.log("Getting a token from localStorage. ");	    
+    
+    const config = {
+	headers:  { authorization: 'Token ' + localStorage.getItem('token')}
+    };
+
+
+    return function(dispatch) {
+	axios.put(`${ROOT_URL}/post/${slug}/`, props, config)
+	     .then(response => {
+		 console.log(">>>> src/actions/index.js (promise):");
+		 console.log("Created a post. Redirecting to /.");
+		 browserHistory.push('/post/' + response.data.slug);
+		 /* console.log(response);*/
+		 dispatch({
+		     type: UPDATE_POST,
+		     payload: response
+		 });
+	     });
+    }
+}
 
 export function deletePost(slug) {
     console.log(">>>> src/actions/index.js:");

@@ -11,11 +11,11 @@ class Header extends Component {
 	    console.log("Rendering header links. User is authenticated, so showing New Post and Sign Out links.");
 	    return (
 		[
-		    <LinkContainer to={{ pathname: '/post/new'}}>
+		    <LinkContainer key={1} to={{ pathname: '/post/new'}}>
 			<NavItem eventKey={2}>New Post</NavItem>
 		    </LinkContainer>,
 		    
-		    <LinkContainer to={{ pathname: '/signout'}}>
+		    <LinkContainer key={2} to={{ pathname: '/signout'}}>
 			<NavItem eventKey={3}>Sign Out</NavItem>
 		    </LinkContainer>
 		]
