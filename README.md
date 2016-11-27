@@ -1,10 +1,12 @@
-This is a very simple blog built with Django, Django REST Framework, React/Redux, and Bootstrap. I hope it will be useful to you as an example or as a starter project.
+This is a very simple blog built with Django, Django REST Framework, React/Redux, and Bootstrap. It can be useful as an example of integrating Django with React, or as a starter project.
+
+It has an auth system, and it allows you to create and edit blog posts.
+
+I have built this project by going through [this](https://www.udemy.com/react-redux/)  and [this](https://www.udemy.com/react-redux-tutorial/) awesome React courses, I highly recommend them to anybody who wants to learn React! And [this](https://teamtreehouse.com/library/django-rest-framework)  Django REST Framework course really helped me to build the backend.
 
 You can check out the demo [here](). You can [login]() with username "admin" and password "1234" to try creating and editing posts(please be nice, don't post anything that might offend anybody).
 
 ![Screenshot](https://raw.githubusercontent.com/raymestalez/django-react-blog/master/assets/blog-screenshot.png)
-
-I have built this project by going through [this](https://www.udemy.com/react-redux/)  and [this](https://www.udemy.com/react-redux-tutorial/) awesome React courses, I highly recommend them to anybody who wants to learn React! And [this Django REST Framework course](https://teamtreehouse.com/library/django-rest-framework) really helped me to build the backend.
 
 <!-- 
 # Installation
