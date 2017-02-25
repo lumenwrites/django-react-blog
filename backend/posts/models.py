@@ -30,7 +30,9 @@ class Post(models.Model):
     # url = models.URLField(default="", null=True, blank=True)
     body = models.TextField(default="", null=True, blank=True)
     
-    tags = models.ManyToManyField('Tag', related_name="posts", blank=True, null=True)
+    tags = models.ManyToManyField('Tag',
+                                  related_name="posts",
+                                  blank=True, null=True)
     score = models.IntegerField(default=0)
     
     def __str__(self):
@@ -57,7 +59,9 @@ class Tag(models.Model):
     slug = models.SlugField(max_length=64, default="")
     description = models.TextField(max_length=512, blank=True)
 
-    parent = models.ForeignKey('Tag', related_name="children",default=None, null=True, blank=True)
+    parent = models.ForeignKey('Tag',
+                               on_delete=models.CASCADE,                                  
+                               related_name="children",default=None, null=True, blank=True)
 
     def __str__(self):
         return self.title

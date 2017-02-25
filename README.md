@@ -3,6 +3,7 @@ This is a very simple blog built with Django, Django REST Framework, React/Redux
 It has an auth system, and it allows you to create and edit blog posts.
 
 I have built this project by following [these](https://www.udemy.com/react-redux/)  [two](https://www.udemy.com/react-redux-tutorial/) awesome React courses, I highly recommend them to anybody who wants to learn React! And [this](https://teamtreehouse.com/library/django-rest-framework)  Django REST Framework course really helped me to build the backend.
+<!-- and this one helped me to dockerize the thing -->
 
 You can check out the demo [here](). You can [login]() with username "admin" and password "1234" to try creating and editing posts(please be nice, don't post anything that might offend anybody).
 
@@ -25,4 +26,5 @@ Oh maan!! I can TOTALLY do this!! Competently. And it will be useful!!
 
 And I will TOOHTALKY dockerize it with some solid docker course!!
 
+# maybe a diagram or a brief explanation
  -->

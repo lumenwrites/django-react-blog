@@ -1,0 +1,15 @@
+ version: '2'
+ services:
+   db:
+     image: postgres
+     environment:
+       - POSTGRES_DB=blog
+       - POSTGRES_USER=blog_user
+       - POSTGRES_PASSWORD=1234
+   web:
+     build: .
+     ports:
+       - "8000:8000"
+       - "8080:8080"       
+     depends_on:
+       - db

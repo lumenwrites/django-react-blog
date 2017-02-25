@@ -1,0 +1,12 @@
+Django==1.10
+psycopg2
+markdown
+praw
+bleach
+beautifulsoup4
+
+html2text
+
+pycurl
+
+pillow
