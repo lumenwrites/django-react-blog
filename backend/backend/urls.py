@@ -25,5 +25,5 @@ urlpatterns = [
     url(r'^api/v1/auth/', views.obtain_auth_token),
 
     url(r'^api/v1/', include('posts.urls',
-                             namespace='posts')),            
+                             namespace='posts', app_name='posts')),            
 ]
