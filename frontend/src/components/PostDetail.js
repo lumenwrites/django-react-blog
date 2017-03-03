@@ -31,7 +31,6 @@ class PostDetail extends Component {
 
 	return (
 	    <div>
-		<br/>
 		<LinkContainer to={{ pathname: "/post/"+this.props.params.slug+"/edit"}}>
 		    <Button className="right">
 			Edit Post

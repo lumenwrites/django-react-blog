@@ -20,7 +20,7 @@ export default (
 	<IndexRoute component={PostList} />
 	<Route path="post/new" component={RequireAuth(PostNew)} />
 	<Route path="post/:slug" component={PostDetail} />
-	<Route path="post/:slug/edit" component={PostEdit} />        			
+	<Route path="post/:slug/edit" component={RequireAuth(PostEdit)} />
 	<Route path="about" component={About} />
 	<Route path="signin" component={Signin} />
 	<Route path="signout" component={Signout} />        		

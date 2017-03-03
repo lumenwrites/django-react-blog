@@ -7,27 +7,23 @@ import { IndexLinkContainer, LinkContainer } from 'react-router-bootstrap';
 
 class Header extends Component {
     renderLinks(){
+	/* console.log("Rendering header links.");*/
 	if(this.props.authenticated) {
-	    console.log("Rendering header links. User is authenticated, so showing New Post and Sign Out links.");
 	    return (
 		[
-		    <Link key={1} to={{ pathname: '/post/new'}}>
-			New Post
+		    <Link key={1} to={{ pathname: '/post/new'}} className="main-menu">
+			New post
 		    </Link>,
 		    
 		    <Link key={2} to={{ pathname: '/signout'}}>
-			Sign Out
+			Sign out
 		    </Link>
 		]
 	    );
 	    
 	} else {
-	    console.log("Rendering header links. User is not authenticated, so showing Sign in and Sign up links.");
 	    return (
 		[
-		    <Link to={{ pathname: '/subscribe'}}>
-			Subscribe
-		    </Link>
 		]
 	    );
 
@@ -41,19 +37,30 @@ class Header extends Component {
     }
     
     render() {
-	console.log(">>>> src/components/header.js:");	
-	console.log("Rendering header. Authenticated: " + this.props.authenticated);
 	return (
 	    <header>
 		<div className="container">
 		    <div className="row">      
-			<div className="col-xs-9 search">
-			    <a className="logo">
-				digitalmind
-			    </a>
+			<div className="col-xs-4 search">
+			    <Link className="logo" to={'/'}>
+				digital<span className="bold">mind</span>
+			    </Link>
 			</div>
-			<div className="col-xs-3 main-menu">
+			<div className="col-xs-8 main-menu">
 			    <div className="right">
+				<div className="dropdown">
+				    <Link to={'/'}>
+					Browse
+				    </Link>
+				    <ul className="dropdown-menu">
+					<li><a href="all">All</a></li>
+				    </ul>	
+				</div>
+
+				<Link to={{ pathname: '/subscribe'}}>
+				    Subscribe
+				</Link>
+				
 				{ this.renderLinks() }
 			    </div>
 			</div>

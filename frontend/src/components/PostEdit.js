@@ -1,16 +1,13 @@
 import React, { Component, PropTypes } from 'react';
-import { reduxForm } from 'redux-form';
-import { updatePost, fetchPost, deletePost } from '../actions/index';
+
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import * as actionCreators from '../actions/index';
 
 import { PageHeader, FormGroup, FieldGroup, FormControl, ControlLabel, Button } from 'react-bootstrap';
 import { IndexLinkContainer, LinkContainer } from 'react-router-bootstrap';
 
 import SimpleMDE from 'react-simplemde-editor';
-/* 
-<FormControl componentClass="textarea"
-placeholder="Write here..."
-{...body} />
-*/
 
 
 class PostEdit extends Component {
@@ -20,54 +17,61 @@ class PostEdit extends Component {
 	router: PropTypes.object
     };
 
+    constructor(props){
+	super(props);
+	/* Set empty state to avoid errors before post is fetched */
+	this.state = { title: "",
+		       body:"",
+		       tags: ""};
+
+	this.onTitleChange = this.onTitleChange.bind(this);
+	this.onBodyChange = this.onBodyChange.bind(this);	
+	this.onTagsChange = this.onTagsChange.bind(this);
+
+    }
     
     componentWillMount() {
 	/* call action creator */
-	/* action creator will grab the post with this id from the API   */
+	/* action creator will fetch the post from the API   */
 	/* and send it to the reducer */
-	/* reducer will add it to the state */
+	/* reducer will add it to the redux state */
 	this.props.fetchPost(this.props.params.slug);
-
-	/* 
-	    .then(() => {
-		console.log("Fetching post!");
-		this.setState({
-		    textValue: post.body
-		});
-	    });
-	*/		
     }
 
-    
 
-    constructor(props) {
-	super(props);
-	this.state = {
-	    textValue: "Initial"
-	};
-
-
-	if (this.props.post) {
-	    /* 
-	    this.setState({
-		textValue: this.props.post.body
-	    });
-	    */
-	}
-	
-	
-    };
-    
-    onTextChange(value) {
+    componentWillReceiveProps(nextProps) {
+	const { post } =  nextProps;
+	console.log("Received props! Body: " + post.body);
+	/* Once the post has been fetched, add it to the state */
 	this.setState({
-	    textValue: value
+	    body: post.body,
+	    title: post.title,
+	    tags: post.tags	    
+	});
+    }
+    
+    
+    onTitleChange(event) {
+	this.setState({
+	    title: event.target.value
 	});
     };
-    
+    onBodyChange(value) {
+	this.setState({
+	    body: value
+	});
+    };
 
-    onSubmit(props) {
-	const {title, tags } = props;
-	const body = this.state.textValue;
+    onTagsChange(event) {
+	this.setState({
+	    tags: event.target.value
+	});
+    };
+
+    onSubmit(event) {
+	const { body, title, tags } = this.state; /* props;*/
+	/* const body = this.state.body;*/
+	event.preventDefault();
 
 	const post = {
 	    title: title,
@@ -75,13 +79,12 @@ class PostEdit extends Component {
 	    tags: tags
 	}
 
-
+	console.log("Sending post to API. Slug: " + this.props.params.slug);
 	/* editPost returns a promise */
-	this.props.updatePost(this.props.params.slug, post)
-	    .then(() => {
+	this.props.updatePost(this.props.params.slug, post).then(() => {
 		/* When promise is resolved, it means post is successfully created */
-		/* This will be called when the promise is resolved */
-
+	    /* This will be called when the promise is resolved */
+	    browserHistory.push('/post/' + response.data.slug);
 	    });
 
     }
@@ -95,11 +98,13 @@ class PostEdit extends Component {
     
     
     render() {
-	
-	/* same as
-	   const title = this.props.fields.title; */
-	const { fields: {title, body, tags}, handleSubmit } = this.props;
 	const { post } = this.props;
+
+	console.log("Current state");
+	console.log("Title: " + this.state.title);		
+	console.log("Body: " + this.state.body);
+	console.log("Tags: " + this.state.tags);	
+
 
 	if (!post) {
 	    return (
@@ -109,31 +114,29 @@ class PostEdit extends Component {
 	
 	return (
 	    <div>
-		<form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+		<br/>
+		<form onSubmit={this.onSubmit.bind(this)}>
 		    <FormGroup>
-			<br/>
-
-			<ControlLabel>
-			    { title.touched ? title.error : '' }
-			</ControlLabel>
 			<FormControl className="postTitle"
 				     type="text"
 				     placeholder="Post Title"
-				     value={post.title}
-				     {...title} />
+				     value={this.state.title}
+				     onChange={this.onTitleChange}/>
 
 			<SimpleMDE
-			    onChange={this.onTextChange.bind(this)}		    
+			    onChange={this.onBodyChange}
+			    value={this.state.body}		    
 			    options={{
 				spellChecker: false,
-				placeholder: "Write here...",
-				initialValue: post.body,
+				placeh0older: "Write here...",
+				initialValue: this.state.body,
 			    }}/>
 
 			<FormControl className="postTags"
 				     type="text"
 				     placeholder="tag1, tag2, tag3"
-				     {...tags}/>
+				     value={this.state.tags}
+				     onChange={this.onTagsChange}/>
 			<br/>
 
 			<Button onClick={this.onDelete.bind(this)}>
@@ -154,26 +157,18 @@ class PostEdit extends Component {
     }
 }
 
-function validate(values) {
-    const errors = {};
 
-    if (!values.title) {
-	errors.title = 'Enter post title';
-    }
-
-    /* if error object has a key that matches one of the field names  */
-    /* it will throw the error */
-    return errors;
-}
 
 
 function mapStateToProps(state) {
-    return { post:state.posts.post };
+    return {
+	post:state.posts.post
+    };
+}
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators(actionCreators, dispatch);
 }
 
 
-export default reduxForm({
-    form: 'PostEditForm',
-    fields: ['title','body','tags'],
-    validate
-}, mapStateToProps, { updatePost, fetchPost, deletePost })(PostEdit);
+export default connect(mapStateToProps, mapDispatchToProps)(PostEdit);

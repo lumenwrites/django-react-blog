@@ -1,10 +1,44 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import { PageHeader, Panel, Label } from 'react-bootstrap';
+import { Panel, Label } from 'react-bootstrap';
 
 
 export default class Post extends Component {
+    renderPostHeader () {
+	if (this.props.link ) {
+	    return (
+		<h2>
+		    <Link to={this.props.link}>
+			{this.props.title}
+		    </Link>
+		</h2>
+	    );
+	} else {
+	    return (
+		<h2>
+		    {this.props.title}
+		</h2>		
+	    );
+	}
+    }
+
+    renderReadMore () {
+	if (this.props.link ) {
+	    return (
+		<div>
+		    <Link to={this.props.link}
+			  className="readMore"> Read more...</Link>
+		</div>
+	    );
+	} else {
+	    return (
+		<div>
+		</div>
+	    );
+	}
+    }
+
+
     render() {
 	const { tags } = this.props;
 	const tagItems = tags.map((tag) => {
@@ -21,24 +55,23 @@ export default class Post extends Component {
 	return (
 	    <div>
 		<article className="post panel panel-default">
-
-		    <h2>
-			<Link to={this.props.link}>
-			    {this.props.title}
-			</Link>
-		    </h2>
+		    {this.renderPostHeader()}
 		    <hr/>
 
 		    <div>
 			{this.props.body}
-			<div>
-			    <Link to={this.props.link}
-				  className="readMore"> Read more...</Link>
-			</div>
+			{this.renderReadMore()}			
 		    </div>
 		    <br/>
 
-		    { tagItems }
+		    <div className="post-footer">
+			{ tagItems }
+			<div className="right">
+			    <Link className="black" to={'http://rayalez.com'} >
+				@rayalez
+			    </Link>
+			</div>
+		    </div>
 		</article>
 	    </div>	    
 	);

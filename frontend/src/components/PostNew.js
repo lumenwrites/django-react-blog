@@ -63,8 +63,6 @@ class PostNew extends Component {
 	    <div>
 		<form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
 		    <FormGroup>
-			<br/>
-
 			<ControlLabel>
 			    { title.touched ? title.error : '' }
 			</ControlLabel>

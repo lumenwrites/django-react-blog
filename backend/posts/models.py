@@ -1,12 +1,9 @@
 import datetime
-# For unique slug
-import uuid
 
 from django.db import models
 from django.template.defaultfilters import slugify
 from django.conf import settings
 from django.db.models import permalink
-
 
 
 # Generate unique slug
@@ -15,12 +12,13 @@ def unique_slug(title):
     slug = slugify(title) + "-" + str(uniqueid)
 
     if not Post.objects.filter(slug=slug).exists():
-        # If the slug is unique - return it
+        # If there's no posts with such slug,
+        # then the slug is unique, so I return it
         return slug
     else:
-        # If the post with this slug already exists - try again
+        # If the post with this slug already exists -
+        # I try to generate unique slug again
         return unique_slug(title)
-
 
     
 class Post(models.Model):

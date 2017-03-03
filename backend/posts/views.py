@@ -36,7 +36,7 @@ class PostCreate(CreateAPIView):
     
     def perform_create(self, serializer):
         post = serializer.save()
-        tag_string = self.request.POST.get('tags')
+        tag_string = self.request.data['tags']
         if tag_string:
             post = add_tags(post, tag_string)
         post.save()
@@ -49,6 +49,16 @@ class PostRetrieveUpdateDestroy(RetrieveUpdateDestroyAPIView):
     serializer_class = PostSerializer
     lookup_field = 'slug'
 
+        
+    def perform_update(self, serializer):
+        post = serializer.save()
+
+        # Replace tags
+        tags = str(self.request.data['tags'])
+        if tags:
+            post = add_tags(post, tags)
+        post.save()
+    
 
 class TagListCreate(ListCreateAPIView):
     queryset = Tag.objects.all()

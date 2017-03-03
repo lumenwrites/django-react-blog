@@ -20,8 +20,8 @@ const token = localStorage.getItem('token');
 // if user has a token - sign him in
 if (token) {
     store.dispatch({ type: AUTH_USER });
-    console.log(">>>> src/index.js:");	    
-    console.log("localStorage contains token, so sign user in.");    
+    /* console.log(">>>> src/index.js:");	    
+     * console.log("localStorage contains token, so sign user in.");    */
 }
 
 

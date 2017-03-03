@@ -1,21 +1,10 @@
 
+$black: rgba(0, 0, 0, 0.8);
+$dark-gray: #3d454b;
+$orange: #f66303;
+$cream: #f6f3ea;
+
 /* Bootstrap customize */
- 
-.navbar {
-    margin-bottom: 0;
-    padding: 20px 0;
-    background: white;
-}
-
-.navbar-default .navbar-brand {
-    color: black;
-
-}
-
-.navbar-default .navbar-nav>li>a {
-    color: black;
-}
-
 .page-header {
     padding-bottom: 0;
     margin: 0 0 20px 0;
@@ -36,13 +25,14 @@
     font-family: "Noto Sans";
 }
 
+html, body {
+    height: 100%;
+    background: $cream;
+}
+
 body, p {
     font-size: 1.8em;
     color: rgba(0,0,0,.8);
-}
-
-html, body, .app, .mainWrapper {
-   height:100%;
 }
 
 h2 a, h2 a:hover {
@@ -50,10 +40,61 @@ h2 a, h2 a:hover {
     text-decoration: none;
 }
 
-.page {
-   min-height:calc(100% - 125px);
-   background: #fafafa;    
+
+header {
+    margin-bottom: 0;
+    padding: 40px 0;
+    background: white;
+    /* box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.05), 0 2px 4px 0 rgba(0, 0, 0, 0.06); */
+    border-top: 4px solid #f66303;
+
+    .logo span {
+	font-size:32px;
+	font-family: 'Open Sans', sans-serif;
+    }
+
+    a {
+	color: $dark-gray;
+	&:hover {
+	    text-decoration:none;
+	    color: $dark-gray;	    
+	}
+    }
+
+    .main-menu {
+	padding-top: 7px;
+	a {
+	    margin-left: 20px;
+	}
+    }
+
+    .dropdown-menu {
+	min-width: 80px;
+	left: auto;	
+	right: -5px;
+
+    }
+
+    .dropdown {
+	float:right;
+	margin-right: 5px;
+	li {
+	    border-bottom: 1px solid rgba(0,0,0,.15);
+	    a {
+		margin: 0;
+	    }
+	}
+	a:hover {
+	    color: $black;
+	    text-decoration: none;
+	}
+    }
+    .dropdown:hover .dropdown-menu {
+	display: block;
+    }
+    
 }
+
 
 .footer {
     background-color: #333333;
@@ -63,16 +104,36 @@ h2 a, h2 a:hover {
 hr {
     margin-top: 0;
 }
+
 /* Post detail */
-.post {
-    padding: 0 40px 20px  40px;
+article {
     margin-top: 20px;
+    padding: 20px 40px 20px  40px;
+    background: rgba(255,255,255,0.8);
+    margin-bottom: 0;
+
+    h2 {
+	font-weight: 400;
+    }
+
+    .readMore {
+	font-size: 12px;
+	color: rgba(0, 0, 0, 0.44);
+    }
+    
+    .post-footer {
+	background: rgba(0,0,0,0.02);
+	font-size: 14px;
+	padding: 7px 10px 10px 10px;
+	margin: 5px -40px -20px -40px;
+	width: calc(100% + 80px);
+	background-color: #fcfcfc;
+	border-top: 1px solid #e8e8e8;
+
+    }
+    
 }
 
-.readMore {
-    font-size: 12px;
-    color: rgba(0, 0, 0, 0.44);
-}
 
 
 /* Helpers */
@@ -84,6 +145,9 @@ hr {
     font-weight:bold;
 }
 
+.black {
+    color: $black;
+}
 
 /* Editor */
 
@@ -100,8 +164,8 @@ hr {
 .form-group {
     margin-bottom: 0;
 }
-/* SimpleMDE */
 
+/* SimpleMDE */
 .editor-toolbar {
     border-radius: 0;
 }
@@ -109,8 +173,21 @@ hr {
 .CodeMirror {
     border-radius: 0;
     border-bottom: none;
+
+    .CodeMirror-code, .editor-preview {
+	.cm-header-1, h1 {
+	    font-size: 16px;
+	    color: $black;
+	    font-weight: bold;
+	}
+    }
+}
+
+#simplepostmd-editor-1-wrapper {
+    background: white;    
 }
 
 .editor-statusbar {
     border: 1px solid #ddd;
 }
+
