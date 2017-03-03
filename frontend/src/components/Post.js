@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { Panel, Label } from 'react-bootstrap';
 
+import Remarkable from 'remarkable';
 
 export default class Post extends Component {
     renderPostHeader () {
@@ -22,6 +23,17 @@ export default class Post extends Component {
 	}
     }
 
+
+    renderBody () {
+	const body = this.props.body;
+	const md = new Remarkable();
+	const markdown = md.render(body);
+	return (
+	    <div dangerouslySetInnerHTML={{__html:markdown}} />
+	);
+    }
+
+    
     renderReadMore () {
 	if (this.props.link ) {
 	    return (
@@ -59,7 +71,8 @@ export default class Post extends Component {
 		    <hr/>
 
 		    <div>
-			{this.props.body}
+			{this.renderBody()}
+			
 			{this.renderReadMore()}			
 		    </div>
 		    <br/>

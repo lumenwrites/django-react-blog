@@ -55,7 +55,7 @@ header {
 
     a {
 	color: $dark-gray;
-	&:hover {
+	&:hover, &:focus {
 	    text-decoration:none;
 	    color: $dark-gray;	    
 	}
@@ -183,7 +183,7 @@ article {
     }
 }
 
-#simplepostmd-editor-1-wrapper {
+#simplepostmd-editor-1-wrapper, #simplepostmd-editor-2-wrapper {
     background: white;    
 }
 

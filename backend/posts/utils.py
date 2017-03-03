@@ -1,5 +1,3 @@
-import uuid # for unique slug
-
 from django.template.defaultfilters import slugify
 from .models import Tag
 

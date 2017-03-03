@@ -46,12 +46,7 @@ class PostNew extends Component {
 
 
 	/* createPost returns a promise */
-	this.props.createPost(post)
-	    .then(() => {
-		/* When promise is resolved, it means post is successfully created */
-		/* This will be called when the promise is resolved */
-		this.context.router.push('/');
-	    });
+	this.props.createPost(post);
     }
 
     render() {

@@ -1,9 +1,11 @@
 import datetime
+import uuid # for unique slug
 
 from django.db import models
 from django.template.defaultfilters import slugify
 from django.conf import settings
 from django.db.models import permalink
+
 
 
 # Generate unique slug

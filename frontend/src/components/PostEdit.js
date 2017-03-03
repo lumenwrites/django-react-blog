@@ -69,8 +69,7 @@ class PostEdit extends Component {
     };
 
     onSubmit(event) {
-	const { body, title, tags } = this.state; /* props;*/
-	/* const body = this.state.body;*/
+	const { body, title, tags } = this.state;
 	event.preventDefault();
 
 	const post = {
@@ -80,20 +79,13 @@ class PostEdit extends Component {
 	}
 
 	console.log("Sending post to API. Slug: " + this.props.params.slug);
-	/* editPost returns a promise */
-	this.props.updatePost(this.props.params.slug, post).then(() => {
-		/* When promise is resolved, it means post is successfully created */
-	    /* This will be called when the promise is resolved */
-	    browserHistory.push('/post/' + response.data.slug);
-	    });
+
+	this.props.updatePost(this.props.params.slug, post);
 
     }
 
     onDelete() {
-	this.props.deletePost(this.props.params.slug)
-	    .then(() => {
-		this.context.router.push('/');
-	    });
+	this.props.deletePost(this.props.params.slug);
     }
     
     
