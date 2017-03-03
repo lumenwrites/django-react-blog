@@ -3,10 +3,13 @@ import React, { Component } from 'react';
 /* Bootstrap */
 import { Grid, Row, Col } from 'react-bootstrap';
 
+/* Styles */
+import '../styles/bootstrap.min.css';
+import '../styles/style.scss';
+
 /* My Components */
-import Header from './header';
-import MainSection from './main_section';
-import Footer from './footer';
+import Header from './Header';
+import Footer from './Footer';
 
 export default class App extends Component {
     render() {

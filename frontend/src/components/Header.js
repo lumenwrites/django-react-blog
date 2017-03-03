@@ -11,13 +11,13 @@ class Header extends Component {
 	    console.log("Rendering header links. User is authenticated, so showing New Post and Sign Out links.");
 	    return (
 		[
-		    <LinkContainer key={1} to={{ pathname: '/post/new'}}>
-			<NavItem eventKey={2}>New Post</NavItem>
-		    </LinkContainer>,
+		    <Link key={1} to={{ pathname: '/post/new'}}>
+			New Post
+		    </Link>,
 		    
-		    <LinkContainer key={2} to={{ pathname: '/signout'}}>
-			<NavItem eventKey={3}>Sign Out</NavItem>
-		    </LinkContainer>
+		    <Link key={2} to={{ pathname: '/signout'}}>
+			Sign Out
+		    </Link>
 		]
 	    );
 	    
@@ -25,9 +25,9 @@ class Header extends Component {
 	    console.log("Rendering header links. User is not authenticated, so showing Sign in and Sign up links.");
 	    return (
 		[
-		    <LinkContainer to={{ pathname: '/signin'}}>
-			<NavItem eventKey={2}>Sign in</NavItem>
-		    </LinkContainer>
+		    <Link to={{ pathname: '/subscribe'}}>
+			Subscribe
+		    </Link>
 		]
 	    );
 
@@ -44,34 +44,22 @@ class Header extends Component {
 	console.log(">>>> src/components/header.js:");	
 	console.log("Rendering header. Authenticated: " + this.props.authenticated);
 	return (
-	    <div>
-		<Navbar>
-		    <Navbar.Header>
-			<Navbar.Brand>
-			    <Link to="/">
-				My Blog
-			    </Link>
-			</Navbar.Brand>
-		    </Navbar.Header>
-
-		    <Navbar.Collapse>		    
-			<Nav className="right">
-			    <IndexLinkContainer to={{ pathname: '/'}}>
-				<NavItem eventKey={1}>Post List</NavItem>
-			    </IndexLinkContainer>
-			    
-			    { this.renderLinks() }
-			    
-			    <LinkContainer to={{ pathname: '/about'}}>
-				<NavItem eventKey={10}>About</NavItem>
-			    </LinkContainer>
-			    
-			</Nav>
-		    </Navbar.Collapse>
-		</Navbar>
-		
-
-	    </div>
+	    <header>
+		<div className="container">
+		    <div className="row">      
+			<div className="col-xs-9 search">
+			    <a className="logo">
+				digitalmind
+			    </a>
+			</div>
+			<div className="col-xs-3 main-menu">
+			    <div className="right">
+				{ this.renderLinks() }
+			    </div>
+			</div>
+		    </div>
+		</div>
+	    </header>
 	);
     }
 }

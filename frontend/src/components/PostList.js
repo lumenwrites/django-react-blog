@@ -6,7 +6,7 @@ import { PageHeader, Panel, Label } from 'react-bootstrap';
 
 import { fetchPosts } from '../actions/index';
 
-import Post from './post';
+import Post from './Post';
 
 class PostList extends Component {
     componentWillMount() {
@@ -39,7 +39,6 @@ class PostList extends Component {
     render() {
 	return (
 	    <div>
-		<PageHeader> Recent Posts </PageHeader>
 		{ this.renderPosts() }
 	    </div>
 	);

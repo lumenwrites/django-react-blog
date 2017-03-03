@@ -1,8 +1,19 @@
-/* Bootstrap customize */
 
+/* Bootstrap customize */
+ 
 .navbar {
     margin-bottom: 0;
     padding: 20px 0;
+    background: white;
+}
+
+.navbar-default .navbar-brand {
+    color: black;
+
+}
+
+.navbar-default .navbar-nav>li>a {
+    color: black;
 }
 
 .page-header {
@@ -55,6 +66,7 @@ hr {
 /* Post detail */
 .post {
     padding: 0 40px 20px  40px;
+    margin-top: 20px;
 }
 
 .readMore {

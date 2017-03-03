@@ -1,14 +1,14 @@
 import React from 'react';
 import {Route, IndexRoute} from 'react-router';
 
-import App from './components/app';
+import Main from './components/Main';
 
-import PostList from './components/post_list';
-import PostNew from './components/post_new';
-import PostEdit from './components/post_edit';
-import PostDetail from './components/post_detail';
+import PostList from './components/PostList';
+import PostNew from './components/PostNew';
+import PostEdit from './components/PostEdit';
+import PostDetail from './components/PostDetail';
 
-import About from './components/about';
+import About from './components/About';
 
 import Signin from './components/auth/signin';
 import Signout from './components/auth/signout';
@@ -16,7 +16,7 @@ import RequireAuth from './components/auth/require_auth';
 
 
 export default (
-    <Route path="/" component={App}>
+    <Route path="/" component={Main}>
 	<IndexRoute component={PostList} />
 	<Route path="post/new" component={RequireAuth(PostNew)} />
 	<Route path="post/:slug" component={PostDetail} />

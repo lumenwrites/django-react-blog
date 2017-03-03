@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { PageHeader, Panel } from 'react-bootstrap';
 
-import Post from './post';
+import Post from './Post';
 
 
 export default class About extends Component {

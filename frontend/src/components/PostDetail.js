@@ -5,7 +5,7 @@ import { fetchPost, deletePost } from '../actions/index';
 import { PageHeader, Panel, Label, Button } from 'react-bootstrap';
 import { IndexLinkContainer, LinkContainer } from 'react-router-bootstrap';
 
-import Post from './post';
+import Post from './Post';
 
 
 class PostDetail extends Component {

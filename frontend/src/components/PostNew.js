@@ -52,8 +52,8 @@ class PostNew extends Component {
 		/* This will be called when the promise is resolved */
 		this.context.router.push('/');
 	    });
-
     }
+
     render() {
 	/* same as
 	   const title = this.props.fields.title; */
