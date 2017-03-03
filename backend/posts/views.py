@@ -59,7 +59,7 @@ class PostRetrieveUpdateDestroy(RetrieveUpdateDestroyAPIView):
 
         # Replace tags
         try:
-            tags = self.request.data['tags']
+            tags = str(self.request.data['tags'])
         except:
             tags = ""        
         if tags:

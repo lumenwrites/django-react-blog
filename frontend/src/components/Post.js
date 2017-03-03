@@ -26,9 +26,9 @@ export default class Post extends Component {
 
     renderBody () {
 	var body = this.props.body;
-
-	if (this.props.truncate && (body.length > this.props.truncate)) {
-	    body = body.split(" ").splice(0,this.props.truncate).join(" ")
+	var truncated = body.split(" ").splice(0,this.props.truncate).join(" ");
+	if (this.props.truncate && body > truncated) {
+	    body = truncated;
 	}
 	
 	const md = new Remarkable();
@@ -40,7 +40,9 @@ export default class Post extends Component {
 
     
     renderReadMore () {
-	if (this.props.truncate  && (this.props.body.length > this.props.truncate)) {
+	var body = this.props.body;	
+	var truncated = body.split(" ").splice(0,this.props.truncate).join(" ");
+	if (this.props.truncate  && body > truncated) {
 	    return (
 		<div>
 		    <Link to={this.props.link}
@@ -55,20 +57,38 @@ export default class Post extends Component {
 	}
     }
 
+    renderFooter () {
+	const { tags } = this.props;
+	if (tags && tags.length > 0) {
+	    const tagItems = tags.map((tag) => {
+		return (
+		    <span key={tag}>
+			<Label bsStyle="default">
+			    {tag}
+			</Label>
+			&nbsp;
+		    </span>
+		);
+	    });
+	    return (
+		<div className="post-footer">
+		    { tagItems }
+		    <div className="right">
+			<Link className="black" to={'http://rayalez.com'} >
+			    @rayalez
+			</Link>
+		    </div>
+		</div>
+	    );
+	} else {
+	    return (
+		<div></div>
+	    );
+	}
+	
+    }
 
     render() {
-	const { tags } = this.props;
-	const tagItems = tags.map((tag) => {
-	    return (
-		<span key={tag}>
-		  <Label bsStyle="default">
-		    {tag}
-		  </Label>
-		  &nbsp;
-		</span>
-	    );
-	});
-	
 	return (
 	    <div>
 		<article className="post panel panel-default">
@@ -81,15 +101,7 @@ export default class Post extends Component {
 			{this.renderReadMore()}			
 		    </div>
 		    <br/>
-
-		    <div className="post-footer">
-			{ tagItems }
-			<div className="right">
-			    <Link className="black" to={'http://rayalez.com'} >
-				@rayalez
-			    </Link>
-			</div>
-		    </div>
+		    {this.renderFooter()}			
 		</article>
 	    </div>	    
 	);

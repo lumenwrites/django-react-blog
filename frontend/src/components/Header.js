@@ -5,6 +5,8 @@ import { Link } from 'react-router';
 import { Button, Navbar, Nav, NavItem } from 'react-bootstrap';
 import { IndexLinkContainer, LinkContainer } from 'react-router-bootstrap';
 
+import LogoImage from '../../img/logo2.png'
+
 class Header extends Component {
     renderLinks(){
 	/* console.log("Rendering header links.");*/
@@ -26,6 +28,11 @@ class Header extends Component {
 		[
 		]
 	    );
+	    /*
+	       <Link to={{ pathname: '/subscribe'}}>
+	       Subscribe
+	       </Link>
+	     */
 
 	    /*
 	       <LinkContainer to={{ pathname: '/signup'}}>
@@ -44,6 +51,7 @@ class Header extends Component {
 			<div className="col-xs-4 search">
 			    <Link className="logo" to={'/'}>
 				digital<span className="bold">mind</span>
+				<img src={LogoImage}/> 				
 			    </Link>
 			</div>
 			<div className="col-xs-8 main-menu">
@@ -56,12 +64,11 @@ class Header extends Component {
 					<li><a href="all">All</a></li>
 				    </ul>	
 				</div>
-
-				<Link to={{ pathname: '/subscribe'}}>
-				    Subscribe
+				{ this.renderLinks() }
+				<Link to={'/about/'}>
+				    About
 				</Link>
 				
-				{ this.renderLinks() }
 			    </div>
 			</div>
 		    </div>

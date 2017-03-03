@@ -1,6 +1,6 @@
  version: '2'
  services:
-   db:
+   postgres:
      image: postgres
      environment:
        - POSTGRES_DB=blog
@@ -12,4 +12,7 @@
        - "8000:8000"
        - "8080:8080"       
      depends_on:
-       - db
+       - postgres
+     links:
+       - postgres:postgres
+       

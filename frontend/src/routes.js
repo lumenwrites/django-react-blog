@@ -22,7 +22,7 @@ export default (
 	<Route path="post/:slug" component={PostDetail} />
 	<Route path="post/:slug/edit" component={RequireAuth(PostEdit)} />
 	<Route path="about" component={About} />
-	<Route path="signin" component={Signin} />
-	<Route path="signout" component={Signout} />        		
+	<Route path="login" component={Signin} />
+	<Route path="logout" component={Signout} />        		
     </Route>
 )

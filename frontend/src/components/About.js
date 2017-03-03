@@ -10,7 +10,6 @@ export default class About extends Component {
     render() {
 	return (
 	    <div>
-		<br/>
 		<Post title="About" body="Welcome to my blog!!"/>	
 	    </div>	    
 	);
