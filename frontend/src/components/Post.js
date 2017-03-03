@@ -8,24 +8,29 @@ export default class Post extends Component {
     renderPostHeader () {
 	if (this.props.link ) {
 	    return (
-		<h2>
+		<h1>
 		    <Link to={this.props.link}>
 			{this.props.title}
 		    </Link>
-		</h2>
+		</h1>
 	    );
 	} else {
 	    return (
-		<h2>
+		<h1>
 		    {this.props.title}
-		</h2>		
+		</h1>		
 	    );
 	}
     }
 
 
     renderBody () {
-	const body = this.props.body;
+	var body = this.props.body;
+
+	if (this.props.truncate && (body.length > this.props.truncate)) {
+	    body = body.split(" ").splice(0,this.props.truncate).join(" ")
+	}
+	
 	const md = new Remarkable();
 	const markdown = md.render(body);
 	return (
@@ -35,7 +40,7 @@ export default class Post extends Component {
 
     
     renderReadMore () {
-	if (this.props.link ) {
+	if (this.props.truncate  && (this.props.body.length > this.props.truncate)) {
 	    return (
 		<div>
 		    <Link to={this.props.link}

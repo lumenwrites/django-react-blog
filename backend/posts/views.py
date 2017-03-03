@@ -36,9 +36,13 @@ class PostCreate(CreateAPIView):
     
     def perform_create(self, serializer):
         post = serializer.save()
-        tag_string = self.request.data['tags']
+        try:
+            tag_string = self.request.data['tags']
+        except:
+            tag_string = ""
         if tag_string:
             post = add_tags(post, tag_string)
+                
         post.save()
 
 
@@ -54,7 +58,10 @@ class PostRetrieveUpdateDestroy(RetrieveUpdateDestroyAPIView):
         post = serializer.save()
 
         # Replace tags
-        tags = str(self.request.data['tags'])
+        try:
+            tags = self.request.data['tags']
+        except:
+            tags = ""        
         if tags:
             post = add_tags(post, tags)
         post.save()
