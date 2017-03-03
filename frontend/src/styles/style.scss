@@ -3,6 +3,7 @@ $black: rgba(0, 0, 0, 0.8);
 $dark-gray: #3d454b;
 $orange: #f66303;
 $cream: #f6f3ea;
+$gray: rgba(255, 255, 255, 0.2);
 
 /* Bootstrap customize */
 .page-header {
@@ -222,3 +223,23 @@ p {
     border: 1px solid #ddd;
 }
 
+
+
+/* Footer */
+
+footer {
+    .credit {
+	margin: 5px;
+    }
+    span {
+	color: $gray;
+    }
+    a {
+	font-weight: bold;
+	color: $gray;
+	cursor: pointer;
+    }
+    i {
+	margin: 5px;
+    }
+}
