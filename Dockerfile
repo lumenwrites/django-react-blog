@@ -29,7 +29,7 @@ RUN npm install
 EXPOSE 8080
 
 # Start frontend test server
-CMD [ "npm", "start" ]
+# CMD [ "npm", "start" ]
 
 ENV SECRET_KEY "7-pwxu4=a0th_s$)8)#z5f-^jlsn_^rg@l+r6$b0)!yfji6m13"
 ENV PG_USERNAME "blog_user"
@@ -39,7 +39,10 @@ ENV PG_PASS "1234"
 WORKDIR $BACKENDDIR
 RUN pip3 install -r $BACKENDDIR/requirements.txt
 RUN pip3 install uwsgi
-    	 
+
+# Install django 2.0
+RUN git clone git://github.com/django/django.git
+RUN pip3 install -e django/    	
 
 WORKDIR $PROJECTDIR
 RUN echo "daemon off;" >> /etc/nginx/nginx.conf
