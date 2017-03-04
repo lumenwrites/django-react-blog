@@ -17,43 +17,48 @@ RUN apt-get install -y python python3-dev python3-pip supervisor nginx libpq-dev
 # Install node 7
 RUN curl -sL https://deb.nodesource.com/setup_7.x | bash -
 RUN apt-get install -y nodejs
+# Install django 2.0
+RUN git clone git://github.com/django/django.git
+RUN pip3 install -e django/    	
+    	    
 
 # Copy project files into /home/blog folder.
 RUN mkdir -p $PROJECTDIR
 WORKDIR $PROJECTDIR
 COPY . .
 
+# Install Frontend dependencies
 WORKDIR $FRONTENDDIR
 RUN npm install		
-# Port to expose
-EXPOSE 8080
 
-# Start frontend test server
-# CMD [ "npm", "start" ]
-
-ENV SECRET_KEY "7-pwxu4=a0th_s$)8)#z5f-^jlsn_^rg@l+r6$b0)!yfji6m13"
-ENV PG_USERNAME "blog_user"
-ENV PG_PASS "1234"
-
-# Install Python dependencies
+# Install Backend dependencies
 WORKDIR $BACKENDDIR
 RUN pip3 install -r $BACKENDDIR/requirements.txt
 RUN pip3 install uwsgi
 
-# Install django 2.0
-RUN git clone git://github.com/django/django.git
-RUN pip3 install -e django/    	
+# Set secret variables (what's the right way to do this that doesn't commit them to git?)
+ENV SECRET_KEY "7-pwxu4=a0th_s$)8)#z5f-^jlsn_^rg@l+r6$b0)!yfji6m13"
+ENV PG_USERNAME "blog_user"
+ENV PG_PASS "1234"
 
-WORKDIR $PROJECTDIR
-RUN echo "daemon off;" >> /etc/nginx/nginx.conf
-COPY ./config/blog_backend_nginx.conf /etc/nginx/sites-available/default
-COPY ./config/supervisor.conf /etc/supervisor/conf.d/ 
-COPY ./config/uwsgi.ini $PROJECTDIR/config/
-COPY ./config/uwsgi_params $PROJECTDIR
+# Configuring and serving django (no idea how it works so far)
+# WORKDIR $PROJECTDIR
+# RUN echo "daemon off;" >> /etc/nginx/nginx.conf
+# COPY ./config/blog_backend_nginx.conf /etc/nginx/sites-available/default
+# COPY ./config/supervisor.conf /etc/supervisor/conf.d/ 
+# COPY ./config/uwsgi.ini $PROJECTDIR/config/
+# COPY ./config/uwsgi_params $PROJECTDIR
 # Port to expose
-EXPOSE 8000
+# EXPOSE 8000
 
-# Copy entrypoint script into the image
-WORKDIR $PROJECTDIR
+# WORKDIR $PROJECTDIR
+# CMD ["supervisord", "-n"]
+	
 
-CMD ["supervisord", "-n"]
+# Serving frontend with nginx [TODO]
+# Port to expose
+# EXPOSE 8080
+
+# Start frontend test server
+# CMD [ "npm", "start" ]
+	
