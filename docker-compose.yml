@@ -25,5 +25,6 @@ services:
         build: ./frontend
         container_name: frontend
         working_dir: /home/blog/frontend
+        container_name: frontend        
         ports:
             - '80:80'
