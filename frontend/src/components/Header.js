@@ -56,7 +56,7 @@ class Header extends Component {
 			</div>
 			<div className="col-xs-8 main-menu">
 			    <div className="right">
-				<div className="dropdown">
+				<div className="dropdown hidden">
 				    <Link to={'/'}>
 					Browse
 				    </Link>

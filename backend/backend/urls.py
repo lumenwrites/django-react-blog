@@ -24,6 +24,6 @@ urlpatterns = [
                                     namespace='rest_framework')),
     url(r'^api/v1/auth/', views.obtain_auth_token),
 
-    url(r'^api/v1/', include('posts.urls',
-                             namespace='posts', app_name='posts')),            
+    url(r'^api/v1/', include('posts.urls', 
+                             namespace='posts')),            
 ]

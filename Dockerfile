@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install -y git emacs curl iputils-ping
 RUN apt-get install -y python python3-dev python3-pip supervisor nginx libpq-dev libcurl4-openssl-dev libtiff5-dev libjpeg8-dev zlib1g-dev libfreetype6-dev liblcms2-dev libwebp-dev tcl8.6-dev tk8.6-dev python-tk
 # Install node 7
 RUN curl -sL https://deb.nodesource.com/setup_7.x | bash -
-RUN apt-get install -y nodejs 
+RUN apt-get install -y nodejs <
 
 # Copy project files into /home/blog folder.
 RUN mkdir -p $PROJECTDIR
@@ -40,8 +40,6 @@ EXPOSE 8080
 ENV SECRET_KEY "7-pwxu4=a0th_s$)8)#z5f-^jlsn_^rg@l+r6$b0)!yfji6m13"
 ENV PG_USERNAME "blog_user"
 ENV PG_PASS "1234"
-
-# COPY $DOCKYARD_SRC $DOCKYARD_SRVPROJ
 
 # Install Python dependencies
 WORKDIR $BACKENDDIR
