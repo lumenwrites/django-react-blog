@@ -1,18 +1,22 @@
- version: '2'
- services:
-   postgres:
-     image: postgres
-     environment:
-       - POSTGRES_DB=blog
-       - POSTGRES_USER=blog_user
-       - POSTGRES_PASSWORD=1234
-   web:
-     build: .
-     ports:
-       - "8000:8000"
-       - "8080:8080"       
-     depends_on:
-       - postgres
-     links:
-       - postgres
-       
+version: '2'
+services:
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_DB=blog
+      - POSTGRES_USER=blog_user
+      - POSTGRES_PASSWORD=1234
+   volumes:
+     - ./dbdata:/var/lib/postgresql/data
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+      - "8080:8080"       
+    depends_on:
+      - db
+    links:
+      - db
+    volumes:
+      - .:/home/blog
+  frontend:

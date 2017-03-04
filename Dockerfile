@@ -18,14 +18,15 @@ RUN apt-get install -y python python3-dev python3-pip supervisor nginx libpq-dev
 RUN curl -sL https://deb.nodesource.com/setup_7.x | bash -
 RUN apt-get install -y nodejs
 # Install django 2.0
-RUN git clone git://github.com/django/django.git
-RUN pip3 install -e django/    	
+# RUN git clone git://github.com/django/django.git
+# RUN pip3 install -e django/    	
     	    
 
+# Using volumes in docker compose instead!
 # Copy project files into /home/blog folder.
-RUN mkdir -p $PROJECTDIR
-WORKDIR $PROJECTDIR
-COPY . .
+# RUN mkdir -p $PROJECTDIR
+# WORKDIR $PROJECTDIR
+# COPY . .
 
 # Install Frontend dependencies
 WORKDIR $FRONTENDDIR
