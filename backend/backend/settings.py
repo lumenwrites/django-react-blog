@@ -79,16 +79,24 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
+# Temporarily switch to sqlite, maybe it'll make dockerizing easier
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME':"blog",
-        'USER':os.environ["PG_USERNAME"],
-        'PASSWORD':os.environ["PG_PASS"],
-        'HOST': 'localhost',
-        'PORT': '',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'blog',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME':"blog",
+#         'USER':os.environ["PG_USERNAME"],
+#         'PASSWORD':os.environ["PG_PASS"],
+#         'HOST': 'localhost',
+#         'PORT': '',
+#     }
+# }
 
 
 # Password validation

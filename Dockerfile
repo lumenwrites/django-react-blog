@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install -y git emacs curl iputils-ping
 RUN apt-get install -y python python3-dev python3-pip supervisor nginx libpq-dev libcurl4-openssl-dev libtiff5-dev libjpeg8-dev zlib1g-dev libfreetype6-dev liblcms2-dev libwebp-dev tcl8.6-dev tk8.6-dev python-tk
 # Install node 7
 RUN curl -sL https://deb.nodesource.com/setup_7.x | bash -
-RUN apt-get install -y nodejs <
+RUN apt-get install -y nodejs
 
 # Copy project files into /home/blog folder.
 RUN mkdir -p $PROJECTDIR
@@ -28,14 +28,8 @@ RUN npm install
 # Port to expose
 EXPOSE 8080
 
-# CMD [ "npm", "start" ]
-
-       
-# From here:
-# Create application subdirectories
-# WORKDIR $DOCKYARD_SRVHOME
-# RUN mkdir media static logs
-# VOLUME ["$DOCKYARD_SRVHOME/media/", "$DOCKYARD_SRVHOME/logs/"]
+# Start frontend test server
+CMD [ "npm", "start" ]
 
 ENV SECRET_KEY "7-pwxu4=a0th_s$)8)#z5f-^jlsn_^rg@l+r6$b0)!yfji6m13"
 ENV PG_USERNAME "blog_user"
@@ -45,12 +39,14 @@ ENV PG_PASS "1234"
 WORKDIR $BACKENDDIR
 RUN pip3 install -r $BACKENDDIR/requirements.txt
 RUN pip3 install uwsgi
+    	 
 
+WORKDIR $PROJECTDIR
 RUN echo "daemon off;" >> /etc/nginx/nginx.conf
-COPY nginx-app.conf /etc/nginx/sites-available/default
-COPY supervisor-app.conf /etc/supervisor/conf.d/ 
-COPY uwsgi.ini $PROJECTDIR
-COPY uwsgi_params $PROJECTDIR
+COPY ./config/blog_backend_nginx.conf /etc/nginx/sites-available/default
+COPY ./config/supervisor.conf /etc/supervisor/conf.d/ 
+COPY ./config/uwsgi.ini $PROJECTDIR/config/
+COPY ./config/uwsgi_params $PROJECTDIR
 # Port to expose
 EXPOSE 8000
 
