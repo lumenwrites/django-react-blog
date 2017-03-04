@@ -14,10 +14,18 @@ RUN apt-get install -y python3-dev python3-pip build-essential supervisor nginx 
     	    
 # Install requirements
 WORKDIR $BACKENDDIR
-COPY . .		
+COPY . .
 RUN pip3 install -r $BACKENDDIR/requirements.txt
 RUN pip3 install uwsgi
 
+# migration doesn't work because I don't know how to access the
+# secret environment variables from /config/env  	    
+# RUN python3.5 manage.py migrate
+
+CMD [ "python3.5", "./manage.py migrate" ]            
+# CMD [ "python3.5", "./manage.py runserver 0.0.0.0:8000" ]      
+
+# will need to properly serve it with nginx/uwsgi    	 
 # RUN echo "daemon off;" >> /etc/nginx/nginx.conf    	 
 # COPY ../config/blog_backend_nginx.conf /etc/nginx/sites-available/default
 # COPY ../config/supervisor.conf /etc/supervisor/conf.d/

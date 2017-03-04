@@ -22,10 +22,7 @@ services:
           - '8000:8000'
 
     frontend:
-        image: nginx
-        working_dir: /home/frontend
+        build: ./frontend
+        working_dir: /home/blog/frontend
         ports:
             - '80:80'
-        volumes:
-            - ./frontend:/usr/share/nginx/html
-
