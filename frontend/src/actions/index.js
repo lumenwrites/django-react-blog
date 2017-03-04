@@ -6,7 +6,9 @@ export const FETCH_POST = 'FETCH_POST';
 export const CREATE_POST = 'CREATE_POST';
 export const DELETE_POST = 'DELETE_POST';
 export const UPDATE_POST = 'UPDATE_POST';
-export const ROOT_URL = 'http://localhost:8000/api/v1';
+
+const host = window.location.host.split(':')[0];
+export const ROOT_URL = 'http://' + host + ':8000/api/v1';
 
 export function fetchPosts() {
     /* console.log("Fetching posts"); */

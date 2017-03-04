@@ -46265,7 +46265,7 @@
 									{ className: 'right' },
 									_react2.default.createElement(
 										'div',
-										{ className: 'dropdown' },
+										{ className: 'dropdown hidden' },
 										_react2.default.createElement(
 											_reactRouter.Link,
 											{ to: '/' },
@@ -46707,7 +46707,9 @@
 	var CREATE_POST = exports.CREATE_POST = 'CREATE_POST';
 	var DELETE_POST = exports.DELETE_POST = 'DELETE_POST';
 	var UPDATE_POST = exports.UPDATE_POST = 'UPDATE_POST';
-	var ROOT_URL = exports.ROOT_URL = 'http://localhost:8000/api/v1';
+
+	var host = window.location.host.split(':')[0];
+	var ROOT_URL = exports.ROOT_URL = 'http://' + host + ':8000/api/v1';
 
 	function fetchPosts() {
 		/* console.log("Fetching posts"); */
