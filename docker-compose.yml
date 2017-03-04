@@ -23,6 +23,8 @@ services:
 
     frontend:
         build: ./frontend
+        volumes:
+            - ./frontend:/home/blog/frontend
         container_name: frontend
         working_dir: /home/blog/frontend
         container_name: frontend        
