@@ -13,7 +13,7 @@ services:
         build: ./backend
         working_dir: /home/blog/backend
         command: python3.5 manage.py runserver 0.0.0.0:8000
-        container_name: blog_backend
+        container_name: backend
         depends_on:
           - postgres
         links:
@@ -23,6 +23,7 @@ services:
 
     frontend:
         build: ./frontend
+        container_name: frontend
         working_dir: /home/blog/frontend
         ports:
             - '80:80'
