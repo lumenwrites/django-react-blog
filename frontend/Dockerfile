@@ -12,6 +12,7 @@ RUN apt-get update && apt-get install -y nginx
 
 # Turn off daemon mode
 RUN echo "\ndaemon off;" >> /etc/nginx/nginx.conf
+RUN rm /etc/nginx/sites-enabled/default
 
 # Copy frontend files
 WORKDIR $FRONTENDDIR
