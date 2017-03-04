@@ -1,0 +1,4 @@
+SECRET_KEY=django_secret_key
+POSTGRES_DB=blog
+POSTGRES_USER=blog_user
+POSTGRES_PASSWORD=1234

@@ -1,22 +1,31 @@
 version: '2'
+
 services:
-  db:
-    image: postgres
-    environment:
-      - POSTGRES_DB=blog
-      - POSTGRES_USER=blog_user
-      - POSTGRES_PASSWORD=1234
-   volumes:
-     - ./dbdata:/var/lib/postgresql/data
-  backend:
-    build: ./backend
-    ports:
-      - "8000:8000"
-      - "8080:8080"       
-    depends_on:
-      - db
-    links:
-      - db
-    volumes:
-      - .:/home/blog
-  frontend:
+    postgres:
+        image: postgres:9.4
+        env_file: ./config/env
+        volumes:
+            - ./pgdata:/var/lib/postgresql/data
+    backend:
+        volumes:
+            - ./backend:/home/blog/backend
+        env_file: ./config/env
+        build: ./backend
+        working_dir: /home/blog/backend
+        command: python3.5 manage.py runserver 0.0.0.0:8000
+        container_name: blog_backend
+        depends_on:
+          - postgres
+        links:
+           - postgres
+        ports:
+          - '8000:8000'
+
+    frontend:
+        image: nginx
+        working_dir: /home/frontend
+        ports:
+            - '80:80'
+        volumes:
+            - ./frontend:/usr/share/nginx/html
+
