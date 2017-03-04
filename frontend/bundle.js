@@ -82290,6 +82290,7 @@
 	Object.defineProperty(exports, "__esModule", {
 				value: true
 	});
+	exports.ROOT_URL = undefined;
 	exports.signinUser = signinUser;
 	exports.signupUser = signupUser;
 	exports.signoutUser = signoutUser;
@@ -82306,7 +82307,8 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var ROOT_URL = 'http://localhost:8000/api/v1';
+	var host = window.location.host.split(':')[0];
+	var ROOT_URL = exports.ROOT_URL = 'http://' + host + ':8000/api/v1';
 
 	function signinUser(_ref) {
 				var username = _ref.username,
