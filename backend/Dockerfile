@@ -10,27 +10,28 @@ ENV BACKENDDIR=/home/blog/backend
 RUN apt-get update && apt-get install -y git emacs curl iputils-ping
 
 # Install python/django dependencies 	        	    
-RUN apt-get install -y python3-dev python3-pip build-essential supervisor nginx libpq-dev uwsgi-plugin-python3 libcurl4-openssl-dev
-    	    
-# Install requirements
-WORKDIR $BACKENDDIR
-COPY . .
-RUN pip3 install -r $BACKENDDIR/requirements.txt
+RUN apt-get install -y python3-dev python3-pip build-essential supervisor nginx libpq-dev uwsgi-plugin-python3 libcurl4-openssl-dev supervisor
+RUN pip3 install -U pip setuptools
 RUN pip3 install uwsgi
 
-# migration doesn't work because I don't know how to access the
-# secret environment variables from /config/env  	    
-# RUN python3.5 manage.py migrate
+# Copy and Install requirements
+# (before copying the rest of the code, so docker would cache them and not reinstall)
+WORKDIR $BACKENDDIR
+COPY requirements.txt .
+RUN pip3 install -r requirements.txt
 
+# Copy all project files	 
+COPY . .
+
+# Serve it with nginx/uwsgi    	 
+# https://github.com/dockerfiles/django-uwsgi-nginx
+RUN echo "daemon off;" >> /etc/nginx/nginx.conf    	 
+COPY config/backend_nginx.conf /etc/nginx/sites-available/default
+COPY config/supervisor.conf /etc/supervisor/conf.d
+COPY config/uwsgi.ini $PROJECTDIR
+COPY config/uwsgi_params $PROJECTDIR
+
+# Migrate (not sure if it works)
 CMD [ "python3.5", "./manage.py migrate" ]            
-# CMD [ "python3.5", "./manage.py runserver 0.0.0.0:8000" ]      
-
-# will need to properly serve it with nginx/uwsgi    	 
-# RUN echo "daemon off;" >> /etc/nginx/nginx.conf    	 
-# COPY ../config/blog_backend_nginx.conf /etc/nginx/sites-available/default
-# COPY ../config/supervisor.conf /etc/supervisor/conf.d/
-# COPY ../config/uwsgi.ini $PROJECTDIR
-# COPY ../config/uwsgi_params $PROJECTDIR
-
-
-# CMD ["supervisord", "-n"]
+# Start supervisor
+CMD ["supervisord", "-n"]

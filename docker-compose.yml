@@ -3,16 +3,16 @@ version: '2'
 services:
     postgres:
         image: postgres:9.4
-        env_file: ./config/env
+        env_file: ./backend/config/env
         volumes:
             - ./pgdata:/var/lib/postgresql/data
     backend:
         volumes:
             - ./backend:/home/blog/backend
-        env_file: ./config/env
+        env_file: ./backend/config/env
         build: ./backend
         working_dir: /home/blog/backend
-        command: python3.5 manage.py runserver 0.0.0.0:8000
+        command: supervisord -n 
         container_name: backend
         depends_on:
           - postgres
