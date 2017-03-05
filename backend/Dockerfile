@@ -25,6 +25,7 @@ COPY . .
 
 # Serve it with nginx/uwsgi    	 
 # https://github.com/dockerfiles/django-uwsgi-nginx
+# tutorial: https://uwsgi.readthedocs.org/en/latest/tutorials/Django_and_nginx.html	
 RUN echo "daemon off;" >> /etc/nginx/nginx.conf    	 
 COPY config/backend_nginx.conf /etc/nginx/sites-available/default
 COPY config/supervisor.conf /etc/supervisor/conf.d

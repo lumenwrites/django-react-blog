@@ -1,13 +1,10 @@
 Django==1.10
-psycopg2
-markdown
-bleach
-beautifulsoup4
 djangorestframework
+psycopg2
 django-cors-headers
 
+markdown
 html2text
-
 pycurl
-
-pillow
+bleach
+beautifulsoup4
