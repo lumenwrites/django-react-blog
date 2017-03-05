@@ -14,21 +14,28 @@ You can check out the demo [here](). You can [login]() with username "admin" and
 ## Installation
 
 Installing and running this blog is very simple. Clone this repo, and then simply run:
+
 	docker-compose build && docker-compose up -d
 
 After that, the blog will be running on the localhost. Isn't docker amazing? =)
 
 Then you will also need to attach to the container by running this:
+
 	docker exec -i -t backend  /bin/bash
+
 and create an admin user with:
+
 	python3.5 manage.py createsuperuser
 
 Now you can go to localhost/login url, login and begin blogging!
 
 To deploy it online, go to Digital Ocean, create a Docker droplet, and repeat the same commands. Then you will need to go to the networking tab, and create two A records pointing to the droplet:
+
 	yourawesomeblog.com
 	api.yourawesomeblog.com
+
 Like so:
+
 ![Screenshot](https://raw.githubusercontent.com/raymestalez/django-react-blog/master/assets/blog-screenshot-2.png)
 
 ----
