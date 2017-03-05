@@ -5,7 +5,7 @@ I have built this project by following [these](https://www.udemy.com/react-redux
 
 This is my first project built with all this tech, so if you have suggestions on how to improve it - I'd really appreciate them. I will keep gradually improving this blog and adding more features. Feel free to  contribute to this project, report bugs, or fork it and use it for your purposes.
 
-You can always contact me at raymestalez@gmail.com, and you can check out the other stuff I'm working on over [here](http://rayalez.com).
+You can always contact me at raymestalez@gmail.com, and you can check out the other stuff I'm working on [over here](http://rayalez.com).
 
 <!-- 
 You can check out the demo [here](). You can [login]() with username "admin" and password "1234" to try creating and editing posts(please be nice, don't post anything that might offend anybody).
