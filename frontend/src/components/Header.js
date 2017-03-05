@@ -5,7 +5,7 @@ import { Link } from 'react-router';
 import { Button, Navbar, Nav, NavItem } from 'react-bootstrap';
 import { IndexLinkContainer, LinkContainer } from 'react-router-bootstrap';
 
-import LogoImage from '../../img/logo2.png'
+import LogoImage from '../../img/digitalmind-logo.png'
 
 class Header extends Component {
     renderLinks(){

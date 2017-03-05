@@ -18,6 +18,7 @@
     "babel-preset-react": "^6.1.18",
     "chai": "^3.5.0",
     "chai-jquery": "^2.0.0",
+    "compression-webpack-plugin": "^0.3.2",
     "css-loader": "^0.26.2",
     "file-loader": "^0.10.1",
     "jquery": "^2.2.1",
