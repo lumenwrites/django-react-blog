@@ -41,5 +41,5 @@ To deploy it online, go to Digital Ocean, create a Docker droplet, and repeat th
 
 Like so:
 
-![Screenshot](https://raw.githubusercontent.com/raymestalez/django-react-blog/master/assets/blog-screenshot-2.png)
+![Screenshot](https://raw.githubusercontent.com/raymestalez/django-react-blog/master/assets/dns-records.png)
 
