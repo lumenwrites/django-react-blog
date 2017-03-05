@@ -1,6 +1,11 @@
 This is a very simple blog built with Django, Django REST Framework, React/Redux, and Bootstrap, deployed with Docker, and served with nginx-uwsgi. It can be useful as an example of integrating Django with React, as a starter project, or as a beautiful and simple blogging tool =)
 
-I have built this project by following [these](https://www.udemy.com/react-redux/)  [two](https://www.udemy.com/react-redux-tutorial/) awesome React courses, I highly recommend them to anybody who wants to learn React! [This](https://teamtreehouse.com/library/django-rest-framework)  Django REST Framework course really helped me to build the backend, and [this](https://www.udemy.com/docker-tutorial-for-devops-run-docker-containers/) course was incredibly helpful for learning docker.
+I have built this project by following [these](https://www.udemy.com/react-redux/)  [two](https://www.udemy.com/react-redux-tutorial/) awesome React courses, I highly recommend them to anybody who wants to learn React! [This](https://teamtreehouse.com/library/django-rest-framework)  Django REST Framework course really helped me to build the backend, and [this](https://www.udemy.com/docker-tutorial-for-devops-run-docker-containers/) course was incredibly helpful for learning Docker.
+
+
+This is my first project built with all this tech, so if you have suggestions on how to improve it - I'd really appreciate them. I will keep gradually improving this blog and adding more features. Feel free to  contribute to this project, report bugs, or fork it and use it for your purposes.
+
+You can always contact me at raymestalez@gmail.com, and you can check out the other stuff I'm working on over [here](http://rayalez.com).
 
 <!-- 
 You can check out the demo [here](). You can [login]() with username "admin" and password "1234" to try creating and editing posts(please be nice, don't post anything that might offend anybody).
@@ -17,7 +22,7 @@ Installing and running this blog is very simple. Clone this repo, and then simpl
 
 	docker-compose build && docker-compose up -d
 
-After that, the blog will be running on the localhost. Isn't docker amazing? =)
+After that, the blog will be running on the localhost. Isn't Docker amazing? =)
 
 Then you will also need to attach to the container by running this:
 
@@ -38,8 +43,3 @@ Like so:
 
 ![Screenshot](https://raw.githubusercontent.com/raymestalez/django-react-blog/master/assets/blog-screenshot-2.png)
 
-----
-
-I will keep gradually improving this blog and adding more features. Feel free to  contribute to this project, report bugs, or fork it and use it for your purposes.
-
-You can always contact me at raymestalez@gmail.com, and you can check out the other stuff I'm working on over [here](http://rayalez.com).
