@@ -31,7 +31,7 @@ export default class Post extends Component {
 	    body = truncated;
 	}
 	
-	const md = new Remarkable();
+	const md = new Remarkable({html: true});
 	const markdown = md.render(body);
 	return (
 	    <div dangerouslySetInnerHTML={{__html:markdown}} />
