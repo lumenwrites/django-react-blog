@@ -29,4 +29,14 @@ services:
         working_dir: /home/blog/frontend
         container_name: frontend        
         ports:
-            - '80:80'
+            - '8080:8080'
+
+    nginx_proxy:
+      build: ./nginx_proxy
+      container_name: nginx_proxy
+      links:
+        - backend
+        - frontend        
+      ports:
+        - '80:80'
+      
