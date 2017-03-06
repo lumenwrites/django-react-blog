@@ -21,7 +21,8 @@ You can check out the demo [here](). You can [login]() with username "admin" and
 
 Installing and running this blog is very simple. Clone this repo, and then simply run:
 
-	docker-compose build && docker-compose up -d
+	docker-compose up
+	(use -d flag to run it in the background)
 
 After that, the blog will be running on the localhost. Isn't Docker amazing? =)
 
