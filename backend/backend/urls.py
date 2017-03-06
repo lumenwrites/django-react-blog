@@ -15,8 +15,12 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from django.conf import settings
+from django.conf.urls.static import static
 from django.conf.urls import include
 from rest_framework.authtoken import views
+
+
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -26,4 +30,4 @@ urlpatterns = [
 
     url(r'^api/v1/', include('posts.urls', 
                              namespace='posts')),            
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
