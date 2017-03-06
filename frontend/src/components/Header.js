@@ -48,13 +48,13 @@ class Header extends Component {
 	    <header>
 		<div className="container">
 		    <div className="row">      
-			<div className="col-xs-4 search">
+			<div className="col-xs-4 col-sm-6 search">
 			    <Link className="logo" to={'/'}>
 				digital<span className="bold">mind</span>
 				<img src={LogoImage}/> 				
 			    </Link>
 			</div>
-			<div className="col-xs-8 main-menu">
+			<div className="col-xs-8 col-sm-6 main-menu">
 			    <div className="right">
 				<div className="dropdown hidden">
 				    <Link to={'/'}>

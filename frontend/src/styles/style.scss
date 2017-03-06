@@ -60,6 +60,9 @@ header {
 	width: 50px;
 	margin-left: 5px;
 	margin-top: -10px;
+	@media  (max-width: 770px) {	
+	    display: none;
+	}
     }
 
     a {
