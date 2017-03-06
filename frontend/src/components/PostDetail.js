@@ -17,6 +17,19 @@ class PostDetail extends Component {
 	this.props.fetchPost(this.props.params.slug);
     }
 
+    renderEditButton () {
+	/* Render "Edit Post" button if user is logged in */
+	if(this.props.authenticated) {
+	    return (
+		<LinkContainer to={{ pathname: "/post/"+this.props.params.slug+"/edit"}}>
+		    <Button className="right">
+			Edit Post
+		    </Button>
+		</LinkContainer>
+	    );
+	}
+    }
+
     static contextTypes = {
 	router: PropTypes.object
     };
@@ -31,11 +44,7 @@ class PostDetail extends Component {
 
 	return (
 	    <div>
-		<LinkContainer to={{ pathname: "/post/"+this.props.params.slug+"/edit"}}>
-		    <Button className="right">
-			Edit Post
-		    </Button>
-		</LinkContainer>
+		{ this.renderEditButton() }
 		
 		<Post title={post.title}
 		      body={post.body}
@@ -46,7 +55,8 @@ class PostDetail extends Component {
 }
 
 function mapStateToProps(state) {
-    return { post:state.posts.post };
+    return { post:state.posts.post,
+    	     authenticated: state.auth.authenticated };
 }
 
 export default connect(mapStateToProps, { fetchPost })(PostDetail);
