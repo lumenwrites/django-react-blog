@@ -31,3 +31,4 @@ urlpatterns = [
     url(r'^api/v1/', include('posts.urls', 
                              namespace='posts')),            
 ]  + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
