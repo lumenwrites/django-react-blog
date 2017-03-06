@@ -2,8 +2,9 @@ This is a very simple blog built with Django, Django REST Framework, React/Redux
 
 I have built this project by following [these](https://www.udemy.com/react-redux/)  [two](https://www.udemy.com/react-redux-tutorial/) awesome React courses, I highly recommend them to anybody who wants to learn React! [This](https://teamtreehouse.com/library/django-rest-framework)  Django REST Framework course really helped me to build the backend, and [this](https://www.udemy.com/docker-tutorial-for-devops-run-docker-containers/) course was incredibly helpful for learning Docker.
 
+I have tried to extensively comment the code, so you could easily understand what's going on, and apply it to your own projects.
 
-This is my first project built with all this tech, so if you have suggestions on how to improve it - I'd really appreciate them. I will keep gradually improving this blog and adding more features. Feel free to  contribute to this project, report bugs, or fork it and use it for your purposes.
+This is my first project built with all this tech, so if you have suggestions on how to improve it - I'd really appreciate them. I will keep gradually improving this blog and adding more features. Feel free to  contribute to this project, report bugs, or fork it and use it for your purposes. I hope you will find it useful!
 
 You can always contact me at raymestalez@gmail.com, and you can check out the other stuff I'm working on [over here](http://rayalez.com).
 
@@ -24,9 +25,13 @@ Installing and running this blog is very simple. Clone this repo, and then simpl
 
 After that, the blog will be running on the localhost. Isn't Docker amazing? =)
 
-Then you will also need to attach to the container by running this:
+You will also need to attach to the container by running this:
 
 	docker exec -i -t backend  /bin/bash
+
+run migrations:
+
+	python3.5 manage.py migrate
 
 and create an admin user with:
 

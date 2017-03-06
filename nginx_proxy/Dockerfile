@@ -11,11 +11,7 @@ RUN echo "\ndaemon off;" >> /etc/nginx/nginx.conf
 
 # Copy nginx config
 COPY nginx_proxy.conf /etc/nginx/sites-enabled/default
-# RUN rm /etc/nginx/sites-enabled/default    	        
-# COPY backend_proxy.conf /etc/nginx/sites-enabled/
-# COPY frontend_proxy.conf /etc/nginx/sites-enabled/     	
      		
-
 # Define default command.
 CMD ["nginx"]
 
