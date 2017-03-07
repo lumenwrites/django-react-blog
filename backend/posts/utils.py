@@ -1,5 +1,5 @@
 from django.template.defaultfilters import slugify
-from .models import Tag
+from tags.models import Tag
 
 
 # Add tags to the post

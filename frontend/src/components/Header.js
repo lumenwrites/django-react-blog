@@ -2,12 +2,41 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
+import { fetchCategories } from '../actions/index';
+
 import { Button, Navbar, Nav, NavItem } from 'react-bootstrap';
 import { IndexLinkContainer, LinkContainer } from 'react-router-bootstrap';
 
 import LogoImage from '../../img/digitalmind-logo.png'
 
 class Header extends Component {
+    componentWillMount() {
+	/* call action creator */
+	/* action creator will grab the post with this id from the API   */
+	/* and send it to the reducer */
+	/* reducer will add it to the state */
+	this.props.fetchCategories();
+    }
+
+
+    renderCategories(){
+	const categories = this.props.categories.results;
+	console.log("Rendering categories: " + categories);
+
+	if (!categories) { return (<div></div>); };
+
+	return categories.map((category) => {
+	    console.log("Looping over categories. Category: " + category);
+	    return (
+		<li key={category.slug}>
+		    <Link to={'/category/' + category.slug}>
+		    {category.title}
+		    </Link>
+		</li>
+	    )
+	});
+    }
+
     renderLinks(){
 	/* console.log("Rendering header links.");*/
 	if(this.props.authenticated) {
@@ -61,6 +90,17 @@ class Header extends Component {
 					Browse
 				    </Link>
 				    <ul className="dropdown-menu">
+					<li><Link to={'/'}>All</Link></li>
+					{ this.renderCategories() }
+				    </ul>	
+				</div>
+				
+
+				<div className="dropdown hidden">
+				    <Link to={'/'}>
+					Browse
+				    </Link>
+				    <ul className="dropdown-menu">
 					<li><a href="all">All</a></li>
 				    </ul>	
 				</div>
@@ -80,8 +120,10 @@ class Header extends Component {
 
 
 function mapStateToProps(state) {
+    console.log("mapStateToProps categories" + state.categories.results);
     return {
-	authenticated: state.auth.authenticated
+	authenticated: state.auth.authenticated,
+	categories: state.categories.all
     };
 }
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps, { fetchCategories })(Header);

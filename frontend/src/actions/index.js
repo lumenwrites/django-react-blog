@@ -6,6 +6,7 @@ export const FETCH_POST = 'FETCH_POST';
 export const CREATE_POST = 'CREATE_POST';
 export const DELETE_POST = 'DELETE_POST';
 export const UPDATE_POST = 'UPDATE_POST';
+export const FETCH_CATEGORIES = 'FETCH_CATEGORIES';
 
 const host = window.location.host.split(':')[0];
 export const ROOT_URL = 'http://' + host + ':8000/api/v1';
@@ -15,8 +16,8 @@ export function fetchPosts() {
     return function(dispatch) {    
 	axios.get(`${ROOT_URL}/posts/`)
 	     .then(response => {
-		 console.log(">>>> src/actions/index.js (promise):");
-		 console.log("Successfully fetched posts.Dispatching action FETCH_POSTS");
+		 /* console.log(">>>> src/actions/index.js (promise):");*/
+		 /* console.log("Successfully fetched posts.Dispatching action FETCH_POSTS");*/
 
 		 dispatch({
 		     type: FETCH_POSTS,
@@ -114,3 +115,17 @@ export function deletePost(slug) {
     
 }
 
+
+
+export function fetchCategories() {
+    return function(dispatch) {    
+	axios.get(`${ROOT_URL}/categories/`)
+	     .then(response => {
+		 console.log("Categories fetched: " + response);
+		 dispatch({
+		     type: FETCH_CATEGORIES,
+		     payload: response
+		 });
+	     });
+    };
+}

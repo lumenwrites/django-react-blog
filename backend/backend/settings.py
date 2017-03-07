@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'corsheaders',
 
     'posts',
+    'categories',
+    'tags',
 ]
 
 MIDDLEWARE = [

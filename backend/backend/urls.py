@@ -28,7 +28,7 @@ urlpatterns = [
                                     namespace='rest_framework')),
     url(r'^api/v1/auth/', views.obtain_auth_token),
 
-    url(r'^api/v1/', include('posts.urls', 
-                             namespace='posts')),            
+    url(r'^api/v1/', include('posts.urls', namespace='posts')),
+    url(r'^api/v1/', include('categories.urls', namespace='categories')),                
 ]  + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

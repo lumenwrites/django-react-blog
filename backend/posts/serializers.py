@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
-from .models import Post, Tag
+from .models import Post
+from tags.models import Tag
 
 
 class TagSlugSerializer(serializers.ModelSerializer):
@@ -39,8 +40,7 @@ class TagSerializer(serializers.ModelSerializer):
         fields = (
             'title',
             'slug',
-            'description',
-            'parent'
         )
 
         
+
