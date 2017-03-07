@@ -16,9 +16,15 @@ class PostList extends Component {
 	this.props.fetchPosts(this.props.params.category);
     }
 
-    componentWillReceiveProps() {
-	/* Fetch posts when route changes */
-	this.props.fetchPosts(this.props.params.category);
+    componentWillReceiveProps(nextProps) {
+	if (nextProps.params.category !== this.props.params.category) {
+	    /* If the route has changed - refetch the posts. */
+	    /* Gotta check if route is different.
+	       Without the if statement it will fetch posts,
+	       which will update props, which will fetch them again,
+	       in infinite loop. */
+	    this.props.fetchPosts(this.props.params.category);
+	}
     }
 
     renderPosts() {

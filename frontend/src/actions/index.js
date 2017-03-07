@@ -24,8 +24,6 @@ export function fetchPosts(category) {
 	     .then(response => {
 		 /* console.log(">>>> src/actions/index.js (promise):");*/
 		 /* console.log("Successfully fetched posts.Dispatching action FETCH_POSTS");*/
-		 console.log('posts_url: ' + posts_url);
-
 		 dispatch({
 		     type: FETCH_POSTS,
 		     payload: response

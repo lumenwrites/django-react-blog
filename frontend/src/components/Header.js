@@ -23,7 +23,7 @@ class Header extends Component {
 	const categories = this.props.categories.results;
 	/* console.log("Rendering categories: " + categories);*/
 
-	if (!categories || categories.length() == 0) { return null; };
+	if (!categories || categories.length == 0) { return null; };
 
 	const categories_list = categories.map((category) => {
 	    /* console.log("Looping over categories. Category: " + category);*/
