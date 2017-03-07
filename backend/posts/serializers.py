@@ -33,6 +33,7 @@ class PostSerializer(serializers.ModelSerializer):
 
         lookup_field = 'slug'
 
+        
 
 class TagSerializer(serializers.ModelSerializer):
     class Meta:

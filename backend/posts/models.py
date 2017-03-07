@@ -30,9 +30,14 @@ class Post(models.Model):
     # url = models.URLField(default="", null=True, blank=True)
     body = models.TextField(default="", null=True, blank=True)
     
+    category = models.ForeignKey('categories.Category',
+                                  related_name="posts",
+                                  blank=True, null=True)    
+
     tags = models.ManyToManyField('tags.Tag',
                                   related_name="posts",
                                   blank=True, null=True)
+
     score = models.IntegerField(default=0)
     
     def __str__(self):

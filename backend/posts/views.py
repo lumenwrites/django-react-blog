@@ -26,6 +26,12 @@ class PostList(ListAPIView):
         if tag:
             tag = Tag.objects.get(slug=tag)
             return qs.filter(tags=tag)
+
+        # Filter by category
+        category = self.kwargs.get('category')
+        if category:
+            category = Category.objects.get(slug=category)
+            return qs.filter(category=category)
         
         return qs
 

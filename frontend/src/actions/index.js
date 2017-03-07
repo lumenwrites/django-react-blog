@@ -11,13 +11,20 @@ export const FETCH_CATEGORIES = 'FETCH_CATEGORIES';
 const host = window.location.host.split(':')[0];
 export const ROOT_URL = 'http://' + host + ':8000/api/v1';
 
-export function fetchPosts() {
+export function fetchPosts(category) {
+    var posts_url = `${ROOT_URL}/posts/`;
+    if (category) {
+	/* Posts filtered by category */
+	posts_url = `${ROOT_URL}/category/${category}`
+    } 
+    
     /* console.log("Fetching posts"); */
-    return function(dispatch) {    
-	axios.get(`${ROOT_URL}/posts/`)
+    return function(dispatch) {
+	axios.get(posts_url)
 	     .then(response => {
 		 /* console.log(">>>> src/actions/index.js (promise):");*/
 		 /* console.log("Successfully fetched posts.Dispatching action FETCH_POSTS");*/
+		 console.log('posts_url: ' + posts_url);
 
 		 dispatch({
 		     type: FETCH_POSTS,
@@ -121,7 +128,7 @@ export function fetchCategories() {
     return function(dispatch) {    
 	axios.get(`${ROOT_URL}/categories/`)
 	     .then(response => {
-		 console.log("Categories fetched: " + response);
+		 /* console.log("Categories fetched: " + response);*/
 		 dispatch({
 		     type: FETCH_CATEGORIES,
 		     payload: response

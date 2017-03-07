@@ -12,8 +12,13 @@ class PostList extends Component {
     componentWillMount() {
 	/* console.log(">>>> src/components/post_list.js:");
 	   console.log("Calling fetchPosts() action creator.");		*/
-	this.props.fetchPosts();
-	
+	/* Fetch posts when the app loads */
+	this.props.fetchPosts(this.props.params.category);
+    }
+
+    componentWillReceiveProps() {
+	/* Fetch posts when route changes */
+	this.props.fetchPosts(this.props.params.category);
     }
 
     renderPosts() {

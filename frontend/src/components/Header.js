@@ -21,20 +21,32 @@ class Header extends Component {
 
     renderCategories(){
 	const categories = this.props.categories.results;
-	console.log("Rendering categories: " + categories);
+	/* console.log("Rendering categories: " + categories);*/
 
-	if (!categories) { return (<div></div>); };
+	if (!categories || categories.length() == 0) { return null; };
 
-	return categories.map((category) => {
-	    console.log("Looping over categories. Category: " + category);
+	const categories_list = categories.map((category) => {
+	    /* console.log("Looping over categories. Category: " + category);*/
 	    return (
 		<li key={category.slug}>
 		    <Link to={'/category/' + category.slug}>
 		    {category.title}
 		    </Link>
 		</li>
-	    )
+	    );
 	});
+
+	return (
+	    <span className="dropdown">
+		<Link to={'/'}>
+		    Browse
+		</Link>
+		<ul className="dropdown-menu">
+		    <li><Link to={'/'}>All</Link></li>
+		    { categories_list }
+		</ul>	
+	    </span>				
+	);
     }
 
     renderLinks(){
@@ -42,7 +54,7 @@ class Header extends Component {
 	if(this.props.authenticated) {
 	    return (
 		[
-		    <Link key={1} to={{ pathname: '/post/new'}} className="main-menu">
+		    <Link key={1} to={{ pathname: '/post/new'}}>
 			New post
 		    </Link>,
 		    
@@ -85,26 +97,8 @@ class Header extends Component {
 			</div>
 			<div className="col-xs-8 col-sm-6 main-menu">
 			    <div className="right">
-				<div className="dropdown hidden">
-				    <Link to={'/'}>
-					Browse
-				    </Link>
-				    <ul className="dropdown-menu">
-					<li><Link to={'/'}>All</Link></li>
-					{ this.renderCategories() }
-				    </ul>	
-				</div>
-				
-
-				<div className="dropdown hidden">
-				    <Link to={'/'}>
-					Browse
-				    </Link>
-				    <ul className="dropdown-menu">
-					<li><a href="all">All</a></li>
-				    </ul>	
-				</div>
 				{ this.renderLinks() }
+				{ this.renderCategories() }
 				<Link to={'/about/'}>
 				    About
 				</Link>
@@ -120,7 +114,6 @@ class Header extends Component {
 
 
 function mapStateToProps(state) {
-    console.log("mapStateToProps categories" + state.categories.results);
     return {
 	authenticated: state.auth.authenticated,
 	categories: state.categories.all
