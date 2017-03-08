@@ -63,10 +63,17 @@ class PostEdit extends Component {
 	if (post) {
 	    var category = "";
 	    if (post.category) {category = post.category.slug};
+	    var tags=""
+	    /* Turn the list of tag objects into comma separated list of tag titles. */
+	    if (post.tags) {
+		tags = post.tags.map((tag) => {
+		    return tag.title;
+		}).join(",");
+	    }
 	    this.setState({
 		body: post.body,
 		title: post.title,
-		tags: post.tags,
+		tags: tags,
 		category: category
 	    });
 	}
