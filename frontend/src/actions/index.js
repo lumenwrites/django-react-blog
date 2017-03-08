@@ -72,21 +72,21 @@ export function createPost(props) {
 
 
 export function updatePost(slug, post) {
-    // Get the saved token from local storage
     /* console.log(">>>> src/actions/index.js:");
      * console.log("Getting a token from localStorage. ");	    */
-    
+
+    /* Get the saved token from local storage */
     const config = {
 	headers:  { authorization: 'Token ' + localStorage.getItem('token')}
     };
 
-    console.log("Post Tags: " + post.tags);
+    /* console.log("Post Tags: " + post.tags);*/
 
     return function(dispatch) {
 	axios.put(`${ROOT_URL}/post/${slug}/`, post, config)
 	     .then(response => {
-		 console.log(">>>> src/actions/index.js (promise):");
-		 console.log("Created a post. Redirecting to /.");
+		 /* console.log(">>>> src/actions/index.js (promise):");
+		 console.log("Updated a post. Redirecting to it.");  */
 		 browserHistory.push('/post/' + response.data.slug);
 		 /* console.log(response);*/
 		 dispatch({

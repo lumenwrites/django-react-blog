@@ -27,7 +27,6 @@ class Post(models.Model):
     title = models.CharField(max_length=255)
     slug = models.SlugField(max_length=256, default="")
     pub_date = models.DateTimeField(blank=True, null=True)
-    # url = models.URLField(default="", null=True, blank=True)
     body = models.TextField(default="", null=True, blank=True)
     
     category = models.ForeignKey('categories.Category',
@@ -54,8 +53,10 @@ class Post(models.Model):
     def get_absolute_url(self):
         return ('view_post', None, {'slug': self.slug })
 
+    
     class Meta:
         ordering = ('-pub_date',)
 
+        
 
 

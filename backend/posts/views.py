@@ -65,6 +65,15 @@ class PostRetrieveUpdateDestroy(RetrieveUpdateDestroyAPIView):
     def perform_update(self, serializer):
         post = serializer.save()
 
+        # Set category
+        try:
+            category = str(self.request.data['category'])
+        except:
+            category = ""        
+        if category:
+            category = Category.objects.get(slug=category)
+            post.category = category
+
         # Replace tags
         try:
             tags = str(self.request.data['tags'])
@@ -72,6 +81,7 @@ class PostRetrieveUpdateDestroy(RetrieveUpdateDestroyAPIView):
             tags = ""        
         if tags:
             post = add_tags(post, tags)
+
         post.save()
     
 

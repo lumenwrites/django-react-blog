@@ -58,9 +58,16 @@ export default class Post extends Component {
     }
 
     renderFooter () {
-	const { tags } = this.props;
+	const { tags, category } = this.props;
+	/* If there's no tags and no category - return empy div */
+	if (!(tags && tags.length > 0 || category)){ return (<div></div>); }
+
+	var tagItems = "";
+	var categoryItem = "";
+
+	/* If there are some tags - generate tagItems  */
 	if (tags && tags.length > 0) {
-	    const tagItems = tags.map((tag) => {
+	    tagItems = tags.map((tag) => {
 		return (
 		    <span key={tag}>
 			<Label bsStyle="default">
@@ -70,22 +77,33 @@ export default class Post extends Component {
 		    </span>
 		);
 	    });
-	    return (
-		<div className="post-footer">
-		    { tagItems }
-		    <div className="right">
-			<Link className="black" to={'http://rayalez.com'} >
-			    @rayalez
-			</Link>
-		    </div>
-		</div>
-	    );
-	} else {
-	    return (
-		<div></div>
+	}
+
+	/* If there's a category - generate a category item */
+	if (category) {
+	    categoryItem = (
+		<span>
+		    <Link to={'/category/' + category.slug}>
+			<Label bsStyle="default">
+			    {category.title}
+			</Label>
+		    </Link>
+		    &nbsp;
+		</span>
 	    );
 	}
-	
+
+	return (
+	    <div className="post-footer">
+		{ categoryItem }		
+		{ tagItems }
+		<div className="right">
+		    <Link className="black" to={'http://rayalez.com'} >
+			@rayalez
+		    </Link>
+		</div>
+	    </div>
+	);
     }
 
     render() {

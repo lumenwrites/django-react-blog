@@ -192,6 +192,10 @@ p {
     color: $black;
 }
 
+.force-fullwidth {
+    width: 100%!important;
+}
+
 /* Editor */
 
 .postTitle {
@@ -200,13 +204,21 @@ p {
     border-bottom: none;
 }
 
-.postTags {
-    border-top:none;
-}
-
 .form-group {
     margin-bottom: 0;
 }
+
+.post-tags {
+    border-top:none;    
+    float: left;
+    width: calc(100% - 200px);
+}
+.select-categories {
+    border-top:none;        
+    float: left;
+    width: 200px;
+}
+
 
 /* SimpleMDE */
 .editor-toolbar {

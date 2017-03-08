@@ -34,24 +34,26 @@ class PostList extends Component {
     renderPosts() {
 	const posts = this.props.posts.results;
 	/* console.log(">>>> src/components/post_list.js:");
-	   console.log("Rendering posts.");		*/
+	   console.log("Rendering posts.");
+	 */
 
-	if (!posts) {
-	    return (
-		<div></div>
-	    );
-	};
+	/* If there are no posts in the state (haven't fetched them yet) -
+	   render an empty div in their place. */
+	if (!posts) { return ( <div></div> ); };
+	
 	return posts.map((post) => {
 	    return (
 		<Post key={post.slug}
 		      title={post.title}
 		      body={post.body}
+		      category={post.category}		      
 		      tags={post.tags}
 		      truncate={100}
 		      link={`post/${post.slug}`}/>
 	    )
 	});
     }
+    
     render() {
 	return (
 	    <div>
@@ -65,6 +67,8 @@ class PostList extends Component {
 function mapStateToProps(state) {
     return { posts: state.posts.all };
 }
-/* First argument allows to access state */
-/* Second allows to fire actions */
+/* First argument connects redux state to the component,
+   allowing to access it with "this.props.posts" */
+/* Second argument connects the actions to the component,
+   allowing me to fire them like "this.props.fetchPosts()" */
 export default connect(mapStateToProps, { fetchPosts })(PostList);

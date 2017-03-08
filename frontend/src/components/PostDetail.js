@@ -48,7 +48,8 @@ class PostDetail extends Component {
 		
 		<Post title={post.title}
 		      body={post.body}
-		      tags={post.tags}/>
+		      tags={post.tags}
+		      category={post.category}/>
 	    </div>	    
 	);
     }

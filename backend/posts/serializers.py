@@ -2,6 +2,7 @@ from rest_framework import serializers
 
 from .models import Post
 from tags.models import Tag
+from categories.models import Category
 
 
 class TagSlugSerializer(serializers.ModelSerializer):
@@ -11,6 +12,14 @@ class TagSlugSerializer(serializers.ModelSerializer):
             'slug',
         )
 
+
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = (
+            'title',
+            'slug',
+        )
         
 
 class PostSerializer(serializers.ModelSerializer):
@@ -22,12 +31,15 @@ class PostSerializer(serializers.ModelSerializer):
         read_only=True,
         slug_field='slug')    
 
+    category = CategorySerializer(read_only=True)
+    
     class Meta:
         model = Post
         fields = (
             'title',
             'slug',
             'body',
+            'category',
             'tags'
         )
 
