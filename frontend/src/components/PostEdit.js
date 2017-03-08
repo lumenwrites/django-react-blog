@@ -144,6 +144,19 @@ class PostEdit extends Component {
 	);
     }
 
+    renderDeleteButton () {
+	/* If I'm editing a post (and not creating a new one) - render delete button. */
+	if (this.props.params.slug) {
+	    return (	
+		    <Button onClick={this.onDelete.bind(this)}>
+			Delete Post
+		    </Button>
+	    );
+	} else {
+	    return null;
+	}
+
+    }
     
     render() {
 	/* Grabbing the post from the redux state
@@ -195,10 +208,8 @@ class PostEdit extends Component {
 			<div className="clearfix"></div>
 			<br/>
 
-			<Button onClick={this.onDelete.bind(this)}>
-			    Delete Post
-			</Button>
-			
+			{ this.renderDeleteButton() } 
+
 			<div className="right">
 			    <IndexLinkContainer to={{ pathname: '/'}}>
 				<Button type="submit">Cancel</Button>

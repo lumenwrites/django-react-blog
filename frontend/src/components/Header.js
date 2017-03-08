@@ -58,8 +58,8 @@ class Header extends Component {
 			New post
 		    </Link>,
 		    
-		    <Link key={2} to={{ pathname: '/signout'}}>
-			Sign out
+		    <Link key={2} to={{ pathname: '/logout'}}>
+			Logout
 		    </Link>
 		]
 	    );
