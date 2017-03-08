@@ -36,13 +36,20 @@ class PostEdit extends Component {
     }
     
     componentWillMount() {
-	/* call action creator */
-	/* action creator will fetch the post from the API   */
-	/* and send it to the reducer */
-	/* reducer will add it to the redux state */
-	/* Which will be rendered into the form */
-	this.props.fetchPost(this.props.params.slug);
-	this.props.fetchCategories;	
+	/* this.props.params.slug is the post slug passed here by the router.
+	   If it's there - I want to fetch the post,
+	   and populate the form with it's data.
+	   If it isn't there - that means I'm at the "/post/new",
+	   and I'll have an empty form for writing a new post. */
+	if (this.props.params.slug) {
+	    /* call action creator */
+	    /* action creator will fetch the post from the API   */
+	    /* and send it to the reducer */
+	    /* reducer will add it to the redux state */
+	    /* Which will be rendered into the form */
+	    this.props.fetchPost(this.props.params.slug);
+	}
+	this.props.fetchCategories();
     }
 
 
@@ -53,11 +60,16 @@ class PostEdit extends Component {
 	   because action creator has to return the action object, not a promise.*/
 	const { post } =  nextProps;
 	/* console.log("Received props! Body: " + post.body);*/
-	this.setState({
-	    body: post.body,
-	    title: post.title,
-	    tags: post.tags	    
-	});
+	if (post) {
+	    var category = "";
+	    if (post.category) {category = post.category.slug};
+	    this.setState({
+		body: post.body,
+		title: post.title,
+		tags: post.tags,
+		category: category
+	    });
+	}
     }
 
     /* Every time I type into the form - update the state. */
@@ -87,8 +99,18 @@ class PostEdit extends Component {
 	/* Creating a post object */
 	const post = { title, body, tags, category }
 	/* console.log("Sending post to API. Slug: " + this.props.params.slug);*/
+
+	if (this.props.params.slug) {
+	    /* If the router passes the slug to this component,
+	       that means I'm editing the post, and I want to update it */
 	/* Calling an action creator, sending the post to the api */
-	this.props.updatePost(this.props.params.slug, post);
+	    this.props.updatePost(this.props.params.slug, post);
+	} else {
+	    /* If there's no this.props.params.slug, that means
+	       I am at the "/post/new", and I want to create a new post*/
+	    this.props.createPost(post);	    
+	}
+	
     }
 
     onDelete() {
@@ -126,7 +148,7 @@ class PostEdit extends Component {
     render() {
 	/* Grabbing the post from the redux state
 	   (connected to this component at the end of this file) */
-	const { post, categories } = this.props;
+	const { categories } = this.props;
 	const noCategories = (!categories || categories.length == 0)
 
 	/* 
@@ -136,9 +158,6 @@ class PostEdit extends Component {
 	console.log("Tags: " + this.state.tags);	
 	*/
 
-	/* Rendering an empty div before I've fetched the post data */
-	if (!post) { return ( <div></div> ); }
-	
 	return (
 	    <div>
 		<br/>

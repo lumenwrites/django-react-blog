@@ -1,3 +1,7 @@
+/* IMPORTANT:
+   Now I am using the PostEdit component for both creating and editing posts.
+   I am keeping this component as an example of validating the form.
+ */
 import React, { Component, PropTypes } from 'react';
 import { reduxForm } from 'redux-form';
 import { createPost } from '../actions/index';

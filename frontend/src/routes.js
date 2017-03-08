@@ -18,7 +18,7 @@ import RequireAuth from './components/auth/require_auth';
 export default (
     <Route path="/" component={Main}>
 	<IndexRoute component={PostList} />
-	<Route path="post/new" component={RequireAuth(PostNew)} />
+	<Route path="post/new" component={RequireAuth(PostEdit)} />
 	<Route path="post/:slug" component={PostDetail} />
 	<Route path="category/:category" component={PostList} />	
 	<Route path="post/:slug/edit" component={RequireAuth(PostEdit)} />

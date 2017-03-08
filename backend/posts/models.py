@@ -35,7 +35,7 @@ class Post(models.Model):
 
     tags = models.ManyToManyField('tags.Tag',
                                   related_name="posts",
-                                  blank=True, null=True)
+                                  blank=True)
 
     score = models.IntegerField(default=0)
     

@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 
 from django.db import migrations, models
 
+from tags.models import Tag
 
 class Migration(migrations.Migration):
 
@@ -18,7 +19,11 @@ class Migration(migrations.Migration):
         migrations.DeleteModel(
             name='Tag',
         ),
-        migrations.AlterField(
+        migrations.RemoveField(
+            model_name='post',
+            name='tags',
+        ),        
+        migrations.AddField(
             model_name='post',
             name='tags',
             field=models.ManyToManyField(blank=True, null=True, related_name='posts', to='tags.Tag'),

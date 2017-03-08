@@ -44,6 +44,17 @@ class PostCreate(CreateAPIView):
     
     def perform_create(self, serializer):
         post = serializer.save()
+
+        # Set category
+        try:
+            category = str(self.request.data['category'])
+        except:
+            category = ""        
+        if category:
+            category = Category.objects.get(slug=category)
+            post.category = category
+        
+        # Add tags
         try:
             tag_string = self.request.data['tags']
         except:
