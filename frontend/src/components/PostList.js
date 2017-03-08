@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
-import { PageHeader, Panel, Label } from 'react-bootstrap';
-
 import { fetchPosts } from '../actions/index';
 
 import Post from './Post';
@@ -16,13 +14,19 @@ class PostList extends Component {
 	this.props.fetchPosts(this.props.params.category);
     }
 
-    componentWillReceiveProps(nextProps) {
-	if (nextProps.params.category !== this.props.params.category) {
-	    /* If the route has changed - refetch the posts. */
-	    /* Gotta check if route is different.
-	       Without the if statement it will fetch posts,
+    componentDidUpdate(nextProps) {
+	if ((this.props.route.path !== nextProps.route.path) ||
+	    (nextProps.params.category !== this.props.params.category)) {
+	    /* If the route has changed - refetch the posts.
+	       Gotta check if route is different with the if statement,
+	       without the if statement it will fetch posts,
 	       which will update props, which will fetch them again,
-	       in infinite loop. */
+	       in infinite loop.
+	       comparing route.path's  checks if I've switched
+	       between "/" and "/category/some-category"
+	       copmaring params checks if I've switched
+	       between "/category/" and "/category/some-other-category"
+	     */
 	    this.props.fetchPosts(this.props.params.category);
 	}
     }
