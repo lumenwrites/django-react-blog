@@ -65,9 +65,6 @@ export default class Post extends Component {
 	var tagItems = "";
 	var categoryItem = "";
 
-	console.log("post title " + this.props.title);	
-	console.log("tags.length " + tags.length);
-	
 	/* If there are some tags - generate tagItems  */
 	if (tags && tags.length > 0) {
 	    tagItems = tags.map((tag) => {
