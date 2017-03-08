@@ -52,7 +52,7 @@ Like so:
 
 You can also go to:
 
-    api.yurawesomeblog.com/admin
+    api.yourawesomeblog.com/admin
 
 to access the admin panel. You can add categories there, if you want to better organize your posts (in the future I'll probably make a frontend interface for that).
 
