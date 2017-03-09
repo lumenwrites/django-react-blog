@@ -98,6 +98,10 @@ class PostDetail extends Component {
 		      body={post.body}
 		      tags={post.tags}
 		      category={post.category}/>
+		<div className="panel subscription-box">
+		    Liked this post? &nbsp;
+		    <a href="http://eepurl.com/_MSbn">Subscribe to the updates!</a>
+		</div>
 	    </div>	    
 	);
     }

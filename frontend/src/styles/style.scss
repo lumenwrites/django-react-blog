@@ -156,6 +156,17 @@ article {
     
 }
 
+.subscription-box {
+    text-align: center;
+    padding: 20px 10px;
+    background-color: #fcfcfc;
+    border: 1px solid #e8e8e8;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+    
+    a {
+	cursor: pointer;
+    }
+}
 /* Typography */
 h1, h1 a {
     font-size: 36px;
