@@ -1,3 +1,16 @@
-from django.shortcuts import render
+from rest_framework.generics import RetrieveAPIView
 
-# Create your views here.
+from .models import Settings
+from .serializers import SettingsSerializer
+
+class SettingsDetail(RetrieveAPIView):
+    serializer_class = SettingsSerializer
+
+    def get_object(self):
+        queryset = Settings.objects.all().first()
+        return queryset
+
+
+    
+
+    

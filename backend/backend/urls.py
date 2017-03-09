@@ -29,6 +29,7 @@ urlpatterns = [
     url(r'^api/v1/auth/', views.obtain_auth_token),
 
     url(r'^api/v1/', include('posts.urls', namespace='posts')),
-    url(r'^api/v1/', include('categories.urls', namespace='categories')),                
+    url(r'^api/v1/', include('categories.urls', namespace='categories')),
+    url(r'^api/v1/', include('core.urls', namespace='core')),                    
 ]  + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

@@ -7,6 +7,7 @@ export const CREATE_POST = 'CREATE_POST';
 export const DELETE_POST = 'DELETE_POST';
 export const UPDATE_POST = 'UPDATE_POST';
 export const FETCH_CATEGORIES = 'FETCH_CATEGORIES';
+export const FETCH_SETTINGS = 'FETCH_SETTINGS';
 
 const host = window.location.host.split(':')[0];
 export const ROOT_URL = 'http://' + host + ':8000/api/v1';
@@ -129,6 +130,19 @@ export function fetchCategories() {
 		 /* console.log("Categories fetched: " + response);*/
 		 dispatch({
 		     type: FETCH_CATEGORIES,
+		     payload: response
+		 });
+	     });
+    };
+}
+
+export function fetchSettings() {
+    return function(dispatch) {    
+	axios.get(`${ROOT_URL}/settings/`)
+	     .then(response => {
+		 /* console.log("Settings fetched: " + JSON.stringify(response));*/
+		 dispatch({
+		     type: FETCH_SETTINGS,
 		     payload: response
 		 });
 	     });

@@ -10,6 +10,15 @@ import routes from './routes';
 import reducers from './reducers';
 import { AUTH_USER } from './actions/types';
 
+/* Google Analytics */
+import ReactGA from "react-ga";
+ReactGA.initialize('UA-44003603-16');
+function logPageView() {
+    ReactGA.set({ page: window.location.pathname });
+    ReactGA.pageview(window.location.pathname);
+}
+
+
 // Connect reduxThunk to middleware so I could dispatch actions.
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 
@@ -28,6 +37,6 @@ if (token) {
 
 ReactDOM.render(
     <Provider store={store}>
-      <Router history={browserHistory} routes={routes}/>
+	<Router history={browserHistory} routes={routes} onUpdate={logPageView}/>
     </Provider>
   , document.querySelector('.app'));

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
+import Helmet from "react-helmet";
 
-import { fetchCategories } from '../actions/index';
+import { fetchCategories, fetchSettings } from '../actions/index';
 
 import { Button, Navbar, Nav, NavItem } from 'react-bootstrap';
 import { IndexLinkContainer, LinkContainer } from 'react-router-bootstrap';
@@ -16,6 +17,7 @@ class Header extends Component {
 	/* and send it to the reducer */
 	/* reducer will add it to the state */
 	this.props.fetchCategories();
+	this.props.fetchSettings();	
     }
 
 
@@ -83,6 +85,15 @@ class Header extends Component {
 	}
 	
     }
+
+    renderMetaInfo () {
+	const settings =  this.props.settings;
+	return (
+	    <div>
+		<Helmet title="My title" />
+	    </div>
+	);
+    }
     
     render() {
 	return (
@@ -116,7 +127,8 @@ class Header extends Component {
 function mapStateToProps(state) {
     return {
 	authenticated: state.auth.authenticated,
-	categories: state.categories.all
+	categories: state.categories.all,
+	settings: state.settings.all	
     };
 }
-export default connect(mapStateToProps, { fetchCategories })(Header);
+export default connect(mapStateToProps, { fetchCategories, fetchSettings })(Header);
