@@ -15,7 +15,7 @@ class Settings(models.Model):
 
     # For facebook/twitter:
     description_social = models.TextField(max_length=512, blank=True)
-    image_social = models.ImageField(upload_to = 'img/', default = '/media/img/card.png')
+    image_social = models.ImageField(upload_to = 'img/', default = '/media/img/social-card.png')
 
     # Analytics tracking number
     analytics = models.CharField(max_length=64, default="", null=True, blank=True,

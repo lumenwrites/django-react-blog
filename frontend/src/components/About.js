@@ -42,9 +42,12 @@ class About extends Component {
     
     render() {
 	var about =  this.props.settings.about;
-	if (!about) {
+
+	if (!about) {return (<div></div>);}
+	if (about == "") {
 	    about = "To edit this text, go to /admin, create settings object, and fill in the info."
 	}
+	
 	return (
 	    <div>
 		{ this.renderMetaInfo() }
