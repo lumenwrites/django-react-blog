@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
+import MetaTags from 'react-meta-tags';
 
-import { fetchPosts } from '../actions/index';
+import { fetchSettings, fetchPosts } from '../actions/index';
 
 import Post from './Post';
 
@@ -12,6 +13,7 @@ class PostList extends Component {
 	   console.log("Calling fetchPosts() action creator.");		*/
 	/* Fetch posts when the app loads */
 	this.props.fetchPosts(this.props.params.category);
+	this.props.fetchSettings();	
     }
 
     componentDidUpdate(nextProps) {
@@ -53,10 +55,33 @@ class PostList extends Component {
 	    )
 	});
     }
+
+    renderMetaInfo () {
+	const settings =  this.props.settings;
+
+	return (
+            <MetaTags>
+		{/* Main */}
+		<title>{settings.title}</title>
+		<meta name="author" content={settings.author} />  
+		<meta name="description"
+		      content={settings.description} />
+		<meta name="keywords"
+		      content={settings.keywords} />
+		{/* Facebook */}
+		<meta property="og:title" content={settings.title} />
+		<meta property="og:image" content={settings.image_social} />
+		{/* Twitter */}
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:image" content={settings.image_social} />
+            </MetaTags>
+	);
+    }
     
     render() {
 	return (
 	    <div>
+		{ this.renderMetaInfo() }
 		{ this.renderPosts() }
 	    </div>
 	);
@@ -65,10 +90,11 @@ class PostList extends Component {
 
 
 function mapStateToProps(state) {
-    return { posts: state.posts.all };
+    return { posts: state.posts.all,
+    	     settings: state.settings.all};
 }
 /* First argument connects redux state to the component,
    allowing to access it with "this.props.posts" */
 /* Second argument connects the actions to the component,
    allowing me to fire them like "this.props.fetchPosts()" */
-export default connect(mapStateToProps, { fetchPosts })(PostList);
+export default connect(mapStateToProps, { fetchPosts, fetchSettings })(PostList);

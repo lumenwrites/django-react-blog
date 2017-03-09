@@ -11,6 +11,7 @@ import reducers from './reducers';
 import { AUTH_USER } from './actions/types';
 
 /* Google Analytics */
+import axios from 'axios';
 import ReactGA from "react-ga";
 ReactGA.initialize('UA-44003603-16');
 function logPageView() {

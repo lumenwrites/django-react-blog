@@ -8,3 +8,5 @@ html2text
 pycurl
 bleach
 beautifulsoup4
+
+Pillow		

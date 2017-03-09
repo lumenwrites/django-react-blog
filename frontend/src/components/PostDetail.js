@@ -1,6 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { fetchPost, deletePost } from '../actions/index';
+import { fetchSettings, fetchPost, deletePost } from '../actions/index';
+import MetaTags from 'react-meta-tags';
+
+import removeMd from 'remove-markdown';
 
 import { PageHeader, Panel, Label, Button } from 'react-bootstrap';
 import { IndexLinkContainer, LinkContainer } from 'react-router-bootstrap';
@@ -15,6 +18,7 @@ class PostDetail extends Component {
 	/* and send it to the reducer */
 	/* reducer will add it to the state */
 	this.props.fetchPost(this.props.params.slug);
+	this.props.fetchSettings();	
     }
 
     renderEditButton () {
@@ -34,6 +38,49 @@ class PostDetail extends Component {
 	router: PropTypes.object
     };
 
+    renderMetaInfo () {
+	const settings =  this.props.settings;
+	const post = this.props.post;
+
+	/* Remove markdown from post body, and truncate it to 160 chars. */
+	const body = removeMd(this.props.post.body);	
+	const truncate_length = 160;
+	const description = body.substring(0, truncate_length - 3) + "...";
+
+	/* Keywords */
+	var post_tags = "";
+	var post_category = "";	
+	if (post.tags) {
+	    post_tags = post.tags.map((tag) => {
+		return tag.title;
+	    }).join(",");
+	}
+	if (post.category) {
+	    post_category = post.category.title;
+	}
+	const keywords = settings.keywords + ',' + post_category + ',' + post_tags
+
+	if (!settings) { return null; }
+	return (
+            <MetaTags>
+		{/* Main */}
+		<title>{post.title}</title>
+		<meta name="author" content={settings.author} />  
+		<meta name="description"
+		      content={description} />
+		<meta name="keywords"
+		      content={keywords} />		
+		{/* Facebook */}
+		<meta property="og:title" content={post.title} />
+		<meta property="og:image" content={settings.image_social} />
+		{/* Twitter */}
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:image" content={settings.image_social} />
+            </MetaTags>
+	);
+    }
+    
+
     render() {
 	const { post } = this.props;
 	if (!post) {
@@ -44,8 +91,8 @@ class PostDetail extends Component {
 
 	return (
 	    <div>
+		{ this.renderMetaInfo() }
 		{ this.renderEditButton() }
-		
 		<Post title={post.title}
 		      body={post.body}
 		      tags={post.tags}
@@ -57,7 +104,8 @@ class PostDetail extends Component {
 
 function mapStateToProps(state) {
     return { post:state.posts.post,
+	     settings: state.settings.all,
     	     authenticated: state.auth.authenticated };
 }
 
-export default connect(mapStateToProps, { fetchPost })(PostDetail);
+export default connect(mapStateToProps, { fetchPost, fetchSettings })(PostDetail);

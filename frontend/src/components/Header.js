@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import Helmet from "react-helmet";
+
 
 import { fetchCategories, fetchSettings } from '../actions/index';
 
@@ -17,7 +17,7 @@ class Header extends Component {
 	/* and send it to the reducer */
 	/* reducer will add it to the state */
 	this.props.fetchCategories();
-	this.props.fetchSettings();	
+	/* this.props.fetchSettings();	*/
     }
 
 
@@ -86,14 +86,6 @@ class Header extends Component {
 	
     }
 
-    renderMetaInfo () {
-	const settings =  this.props.settings;
-	return (
-	    <div>
-		<Helmet title="My title" />
-	    </div>
-	);
-    }
     
     render() {
 	return (
