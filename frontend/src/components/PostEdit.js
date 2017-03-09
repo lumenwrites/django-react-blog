@@ -176,7 +176,7 @@ class PostEdit extends Component {
 	console.log("Title: " + this.state.title);		
 	console.log("Body: " + this.state.body);
 	console.log("Tags: " + this.state.tags);	
-	*/
+	 */
 
 	return (
 	    <div>
@@ -190,14 +190,20 @@ class PostEdit extends Component {
 				     value={this.state.title}
 				     onChange={this.onTitleChange}/>
 
-			{/* Body */}			
+			{/* Body */}
 			<SimpleMDE
 			    onChange={this.onBodyChange}
-			    value={this.state.body}		    
+			    value={this.state.body}
 			    options={{
 				spellChecker: false,
-				placeh0older: "Write here...",
+				placeholder: "Write here...",
 				initialValue: this.state.body,
+				autosave: {
+				    enabled: false,
+				    delay: 1000,
+				    uniqueId: "NewPost",
+				    delay: 1000,
+				},				
 			    }}/>
 
 			{/* Categories */}
