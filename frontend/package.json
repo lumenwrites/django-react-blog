@@ -42,6 +42,7 @@
     "react-bootstrap": "^0.30.6",
     "react-document-meta": "^2.1.1",
     "react-dom": "^0.14.3",
+    "react-fontawesome": "^1.5.0",
     "react-ga": "^2.1.2",
     "react-helmet": "^4.0.0",
     "react-markdown": "^2.4.5",
