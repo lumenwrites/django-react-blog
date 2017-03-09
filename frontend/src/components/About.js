@@ -27,6 +27,7 @@ class About extends Component {
 	const truncate_length = 160;
 	const description = body.substring(0, truncate_length - 3) + "...";
 
+	if (!settings.title) { return null; }
 	return (
             <MetaTags>
 		<title>{"About " + settings.title}</title>

@@ -60,7 +60,8 @@ class PostDetail extends Component {
 	}
 	const keywords = settings.keywords + ',' + post_category + ',' + post_tags
 
-	if (!settings) { return null; }
+	if (!settings.title) { return null; }
+
 	return (
             <MetaTags>
 		{/* Main */}

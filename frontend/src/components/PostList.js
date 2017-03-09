@@ -59,6 +59,8 @@ class PostList extends Component {
     renderMetaInfo () {
 	const settings =  this.props.settings;
 
+	if (!settings.title ) { return null; }
+
 	return (
             <MetaTags>
 		{/* Main */}
