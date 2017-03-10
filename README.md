@@ -55,3 +55,37 @@ You can also go to:
     api.yourawesomeblog.com/admin
 
 to access the admin panel. You can add categories there, if you want to better organize your posts, and you can create a settings object where you can add an about page and fill in the meta info(site title, keywords, etc).
+
+# Upcoming features
+- RSS and Email subscriptions.
+- Server side rendering.
+- Proper form validation.
+- Filter by tags.
+- Pagination.
+  
+# Future/Maybe
+- Auto Saving.
+- Add nested comments.
+- Export/Import data.  
+- Docker Volume API. Properly backup DB.  
+- Decentralization(federated wordpress/medium).  
+  Add ActivityPub stream of recent posts.  
+  Fetched by nexy, used as community.  
+- Image upload
+  
+# Bugs
+- Sometimes post editor toolbar is yellow
+
+# Clean up
+- Pass all the speed tests.
+  https://developers.google.com/speed/pagespeed/insights/
+  https://tools.pingdom.com/
+  https://gtmetrix.com/
+- Pass all mobile tests
+  https://search.google.com/search-console/mobile-friendly
+- Pass all SEO tests
+  https://seositecheckup.com
+- Write tests
+- Migrate entrypoint.sh?
+
+
