@@ -28,6 +28,7 @@ class Post(models.Model):
     slug = models.SlugField(max_length=256, default="")
     pub_date = models.DateTimeField(blank=True, null=True)
     body = models.TextField(default="", null=True, blank=True)
+    published = models.BooleanField(default=False, blank=True)
     
     category = models.ForeignKey('categories.Category',
                                   related_name="posts",

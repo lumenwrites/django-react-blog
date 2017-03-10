@@ -4,6 +4,8 @@ import { Panel, Label } from 'react-bootstrap';
 
 import Remarkable from 'remarkable';
 
+import FontAwesome from 'react-fontawesome';
+
 export default class Post extends Component {
     renderPostHeader () {
 	if (this.props.link ) {
@@ -23,6 +25,30 @@ export default class Post extends Component {
 	}
     }
 
+    renderPostEdit () {
+	if (this.props.authenticated ) {
+	    return (
+		<Link to={"/post/"+this.props.slug+"/edit"}>
+		    <FontAwesome name='pencil' className="button-edit" />
+		</Link>
+	    );
+	} else {
+	    return (
+		null
+	    );
+	}
+    }
+
+    renderDraftLabel () {
+	if (!this.props.published ) {
+	    return (
+		<Label bsStyle="default" className="label-draft">
+		    Draft
+		</Label>
+	    );
+	} else {return (null);}
+    }
+    
 
     renderBody () {
 	var body = this.props.body;
@@ -110,6 +136,8 @@ export default class Post extends Component {
 	return (
 	    <div>
 		<article className="post panel panel-default">
+		    {this.renderPostEdit()}
+		    {this.renderDraftLabel()}
 		    {this.renderPostHeader()}
 		    <hr/>
 

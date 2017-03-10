@@ -93,9 +93,12 @@ class PostDetail extends Component {
 	return (
 	    <div>
 		{ this.renderMetaInfo() }
-		{ this.renderEditButton() }
+		{/* this.renderEditButton() */}
 		<Post title={post.title}
+		      slug={post.slug}		      
 		      body={post.body}
+		      published={post.published}
+		      authenticated={this.props.authenticated}
 		      tags={post.tags}
 		      category={post.category}/>
 		<div className="panel subscription-box">

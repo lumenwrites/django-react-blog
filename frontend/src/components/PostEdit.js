@@ -23,16 +23,17 @@ class PostEdit extends Component {
 	/* Set empty state to avoid errors before post is fetched */
 	this.state = { title: "",
 		       body:"",
+		       published: false,
 		       tags: "",
 		       category: ""};
-
+	
 	/* So that I would be able to access this component with "this"
 	   inside the functions: */
 	this.onTitleChange = this.onTitleChange.bind(this);
 	this.onBodyChange = this.onBodyChange.bind(this);	
 	this.onTagsChange = this.onTagsChange.bind(this);
-	this.onCategoryChange = this.onCategoryChange.bind(this);	
-
+	this.onCategoryChange = this.onCategoryChange.bind(this);
+	this.onPublishClick = this.onPublishClick.bind(this);		
     }
     
     componentWillMount() {
@@ -73,6 +74,7 @@ class PostEdit extends Component {
 	    this.setState({
 		body: post.body,
 		title: post.title,
+		published: post.published,		
 		tags: tags,
 		category: category
 	    });
@@ -95,7 +97,15 @@ class PostEdit extends Component {
 	console.log("Selected category: " + selectedCategory);
 	this.setState({ category: selectedCategory });	
     };
+    onPublishClick(event) {
+	/* Flip published state */
+	/* this.setState({ published: !this.state.published });	*/
 
+	const { body, title, tags, category } = this.state;
+	const published = !this.state.published;
+	const post = { title, body, published, tags, category };
+	this.props.updatePost(this.props.params.slug, post);
+    }
     onSubmit(event) {
 	/* Handle submit */
 	/* Stop the default event(so that submitting form wouldn't reload thep page) */
@@ -104,7 +114,7 @@ class PostEdit extends Component {
 	const { body, title, tags, category } = this.state;
 
 	/* Creating a post object */
-	const post = { title, body, tags, category }
+	const post = { title, body, tags, category };
 	/* console.log("Sending post to API. Slug: " + this.props.params.slug);*/
 
 	if (this.props.params.slug) {
@@ -164,6 +174,21 @@ class PostEdit extends Component {
 	}
 
     }
+
+    renderPublishButton () {
+	if (!this.props.post) {return null;}
+	console.log("State: \n" + JSON.stringify(this.state));
+	if (!this.state.published) {
+	    return (	
+		    <Button onClick={this.onPublishClick}>Publish</Button>
+	    );
+	    } else {
+		return (	
+			<Button onClick={this.onPublishClick}>Un-Publish</Button>
+		);
+	}
+    }
+
     
     render() {
 	/* Grabbing the post from the redux state
@@ -227,6 +252,7 @@ class PostEdit extends Component {
 			    <IndexLinkContainer to={{ pathname: '/'}}>
 				<Button type="submit">Cancel</Button>
 			    </IndexLinkContainer> &nbsp;
+			    { this.renderPublishButton() }  &nbsp;
 			    <Button bsStyle="primary" type="submit">Save</Button>
 			</div>
 		    </FormGroup>

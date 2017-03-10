@@ -44,15 +44,20 @@ class PostList extends Component {
 	if (!posts) { return ( <div></div> ); };
 	
 	return posts.map((post) => {
-	    return (
-		<Post key={post.slug}
-		      title={post.title}
-		      body={post.body}
-		      category={post.category}		      
-		      tags={post.tags}
-		      truncate={100}
-		      link={`post/${post.slug}`}/>
-	    )
+	    if (post.published || this.props.authenticated) {
+		return (
+		    <Post key={post.slug}
+			  title={post.title}
+			  slug={post.slug}			  
+			  body={post.body}
+			  published={post.published}
+			  authenticated={this.props.authenticated}
+			  category={post.category}		      
+			  tags={post.tags}
+			  truncate={100}
+			  link={`post/${post.slug}`}/>
+		)
+	    }
 	});
     }
 
@@ -93,7 +98,8 @@ class PostList extends Component {
 
 function mapStateToProps(state) {
     return { posts: state.posts.all,
-    	     settings: state.settings.all};
+    	     settings: state.settings.all,
+    	     authenticated: state.auth.authenticated};
 }
 /* First argument connects redux state to the component,
    allowing to access it with "this.props.posts" */
