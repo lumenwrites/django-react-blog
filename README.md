@@ -54,5 +54,4 @@ You can also go to:
 
     api.yourawesomeblog.com/admin
 
-to access the admin panel. You can add categories there, if you want to better organize your posts (in the future I'll probably make a frontend interface for that).
-
+to access the admin panel. You can add categories there, if you want to better organize your posts, and you can create a settings object where you can add an about page and fill in the meta info(site title, keywords, etc).
