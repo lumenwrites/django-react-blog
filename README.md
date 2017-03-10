@@ -57,12 +57,18 @@ You can also go to:
 to access the admin panel. You can add categories there, if you want to better organize your posts, and you can create a settings object where you can add an about page and fill in the meta info(site title, keywords, etc).
 
 # Upcoming features
+- [X] Core settings. Meta info, analytics, about page.
+- [X] Categories
+- [X] Drafts
 - [ ] RSS and Email subscriptions.
 - [ ] Server side rendering.
 - [ ] Proper form validation.
 - [ ] Filter by tags.
 - [ ] Pagination.
-  
+
+# Bugs
+- [ ] Sometimes post editor toolbar is yellow
+
 # Future/Maybe
 - Auto Saving.
 - Add nested comments.
@@ -72,20 +78,17 @@ to access the admin panel. You can add categories there, if you want to better o
   Add ActivityPub stream of recent posts.  
   Fetched by nexy, used as community.  
 - Image upload
-  
-# Bugs
-- Sometimes post editor toolbar is yellow
 
 # Clean up
-- Pass all the speed tests.
-  https://developers.google.com/speed/pagespeed/insights/
-  https://tools.pingdom.com/
-  https://gtmetrix.com/
-- Pass all mobile tests
+- Pass all the speed tests.  
+  https://developers.google.com/speed/pagespeed/insights/  
+  https://tools.pingdom.com/  
+  https://gtmetrix.com/  
+- Pass all mobile tests  
   https://search.google.com/search-console/mobile-friendly
-- Pass all SEO tests
+- Pass all SEO tests  
   https://seositecheckup.com
 - Write tests
-- Migrate entrypoint.sh?
+- Migrate automatically. entrypoint.sh?
 
 
