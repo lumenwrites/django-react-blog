@@ -69,7 +69,7 @@ class PostEdit extends Component {
 	    if (post.tags) {
 		tags = post.tags.map((tag) => {
 		    return tag.title;
-		}).join(",");
+		}).join(", ");
 	    }
 	    this.setState({
 		body: post.body,
