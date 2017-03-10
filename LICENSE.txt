@@ -1,4 +1,4 @@
-Copyright (c) 2017 Ray ALez, https://github.com/raymestalez/django-react-blog
+Copyright (c) 2017 Ray Alez, https://github.com/raymestalez/django-react-blog
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
