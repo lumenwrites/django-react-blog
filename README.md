@@ -71,13 +71,14 @@ to access the admin panel. You can add categories there, if you want to better o
 
 # Future/Maybe
 - Auto Saving.
-- Add nested comments.
-- Export/Import data.  
 - Docker Volume API. Properly backup DB.  
 - Decentralization(federated wordpress/medium).  
   Add ActivityPub stream of recent posts.  
-  Fetched by nexy, used as community.  
-- Image upload
+  Fetched by nexy, used as community.
+- Export/Import data.  
+- Add nested comments.
+- Image upload?
+- Code syntax highlighting? IPython? MathJax?
 
 # Clean up
 - Pass all the speed tests.  
