@@ -52,7 +52,7 @@ class About extends Component {
 	return (
 	    <div>
 		{ this.renderMetaInfo() }
-		<Post title="About" body={about}/>
+		<Post title="About" published={true} body={about}/>
 	    </div>	    
 	);
     }
