@@ -55,7 +55,7 @@ class PostList extends Component {
 			  category={post.category}		      
 			  tags={post.tags}
 			  truncate={100}
-			  link={`post/${post.slug}`}/>
+			  link={`/post/${post.slug}`}/>
 		)
 	    }
 	});
