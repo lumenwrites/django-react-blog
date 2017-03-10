@@ -193,9 +193,16 @@ class PostEdit extends Component {
     render() {
 	/* Grabbing the post from the redux state
 	   (connected to this component at the end of this file) */
-	const { categories } = this.props;
-	const noCategories = (!categories || categories.length == 0)
-
+	const categories = this.props.categories;
+	var noCategories = false;
+	if (categories.results) {
+	    /* If categories have been fetched - check if user has created any */
+	    if (categories.results.length == 0) {
+		/* If there are no categories -
+		   then we'll want tags input to be fullwidth */
+		noCategories = true;
+	    }
+	}
 	/* 
 	console.log("> Current state: ");
 	console.log("Title: " + this.state.title);		
