@@ -57,11 +57,11 @@ You can also go to:
 to access the admin panel. You can add categories there, if you want to better organize your posts, and you can create a settings object where you can add an about page and fill in the meta info(site title, keywords, etc).
 
 # Upcoming features
-- RSS and Email subscriptions.
-- Server side rendering.
-- Proper form validation.
-- Filter by tags.
-- Pagination.
+- [ ] RSS and Email subscriptions.
+- [ ] Server side rendering.
+- [ ] Proper form validation.
+- [ ] Filter by tags.
+- [ ] Pagination.
   
 # Future/Maybe
 - Auto Saving.
