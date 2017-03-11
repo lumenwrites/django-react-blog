@@ -200,7 +200,7 @@ article {
     }
     .subscription-form {
 	.email {
-	    width: calc(100% - 100px); /* - 43px */
+	    width: calc(100% - 100px - 43px);
 	    float:left;
 	    height: 38px;
 	}
@@ -212,7 +212,6 @@ article {
 	    border: none;
 	}
 	.rss {
-	    display:none;
 	    float: left;
 	    width: 38px;	    
 	    height: 38px;

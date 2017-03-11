@@ -65,7 +65,7 @@ to access the admin panel. You can add categories there, if you want to better o
 - [ ] Proper form validation.
 - [ ] Filter by tags.
 - [ ] Pagination.
-- [ ] RSS
+- [X] RSS
 
 # Bugs
 - [ ] Sometimes post editor toolbar is yellow
