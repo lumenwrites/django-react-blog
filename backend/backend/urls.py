@@ -20,7 +20,7 @@ from django.conf.urls.static import static
 from django.conf.urls import include
 from rest_framework.authtoken import views
 
-
+from posts import urls as posts_urls
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -31,6 +31,8 @@ urlpatterns = [
     url(r'^api/v1/', include('posts.urls', namespace='posts')),
     url(r'^api/v1/', include('categories.urls', namespace='categories')),
     url(r'^api/v1/', include('core.urls', namespace='core')),
-    url(r'^api/v1/', include('profiles.urls', namespace='core')),                        
+    url(r'^api/v1/', include('profiles.urls', namespace='core')),
+
+    url(r'', include(posts_urls)),    
 ]  + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

@@ -3,6 +3,8 @@ from django.conf.urls import url
 from .views import PostList, PostCreate, PostRetrieveUpdateDestroy
 from .views import TagListCreate, TagRetrieveUpdateDestroy
 
+from .feeds import MainFeed
+
 urlpatterns = [
     # List posts
     url(r'^posts/$', PostList.as_view(), name='post_list'),
@@ -20,5 +22,8 @@ urlpatterns = [
 
     url(r'^tags/$', TagListCreate.as_view(), name='tag_list'),    
     url(r'tag/(?P<slug>[^\.]+)/$', TagRetrieveUpdateDestroy.as_view(), name='tag_detail'),
+
+    # Atom Feed
+    url(r'^feed/rss$', MainFeed()),    
 ]
 
