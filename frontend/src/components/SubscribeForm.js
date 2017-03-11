@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ReactDOM from 'react-dom';
+import { Link } from 'react-router';
 
 import FontAwesome from 'react-fontawesome';
 import { FormGroup, FieldGroup, FormControl, ControlLabel, Button } from 'react-bootstrap';
@@ -28,9 +29,9 @@ class SubscribeForm extends Component {
 			     ref="email" />
 		<Button bsStyle="primary" className="subscribe"
 			type="submit">Subscribe</Button>
-		<Button bsStyle="primary" className="rss" type="submit">
+		<a href="/feed/rss" className="btn rss">
 		    <FontAwesome name='rss' />
-		</Button>
+		</a>
 		<div className="clearfix"></div>
 	    </form>
 	);
