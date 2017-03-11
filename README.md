@@ -60,11 +60,12 @@ to access the admin panel. You can add categories there, if you want to better o
 - [X] Core settings. Meta info, analytics, about page.
 - [X] Categories
 - [X] Drafts
-- [ ] RSS and Email subscriptions.
+- [X] Email subscriptions.
 - [ ] Server side rendering.
 - [ ] Proper form validation.
 - [ ] Filter by tags.
 - [ ] Pagination.
+- [ ] RSS
 
 # Bugs
 - [ ] Sometimes post editor toolbar is yellow
