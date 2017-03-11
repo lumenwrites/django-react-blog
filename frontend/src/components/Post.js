@@ -8,7 +8,11 @@ import FontAwesome from 'react-fontawesome';
 
 export default class Post extends Component {
     renderPostHeader () {
+	/* Return post header */
 	if (this.props.link ) {
+	    /* PostList will use this component, and pass a link to it
+	       so you can click on the title and view it */
+	    
 	    return (
 		<h1>
 		    <Link to={this.props.link}>
@@ -17,6 +21,7 @@ export default class Post extends Component {
 		</h1>
 	    );
 	} else {
+	    /* Post detail does not pass a link. */
 	    return (
 		<h1>
 		    {this.props.title}
@@ -27,6 +32,7 @@ export default class Post extends Component {
 
     renderPostEdit () {
 	if (this.props.authenticated ) {
+	    /* If user is autheticated - show him the edit button. */
 	    return (
 		<Link to={"/post/"+this.props.slug+"/edit"}>
 		    <FontAwesome name='pencil' className="button-edit" />
@@ -41,6 +47,7 @@ export default class Post extends Component {
 
     renderDraftLabel () {
 	if (!this.props.published ) {
+	    /* Show "Draft" label on non-published posts */
 	    return (
 		<Label bsStyle="default" className="label-draft">
 		    Draft
@@ -52,11 +59,13 @@ export default class Post extends Component {
 
     renderBody () {
 	var body = this.props.body;
+	/* Truncate the post to the number of words passed as a truncate prop. */
 	var truncated = body.split(" ").splice(0,this.props.truncate).join(" ");
 	if (this.props.truncate && body > truncated) {
 	    body = truncated;
 	}
-	
+
+	/* Turn markdown into html */
 	const md = new Remarkable({html: true});
 	const markdown = md.render(body);
 	return (
@@ -66,6 +75,7 @@ export default class Post extends Component {
 
     
     renderReadMore () {
+	/* Add "read more..." link at the end of truncated posts. */
 	var body = this.props.body;	
 	var truncated = body.split(" ").splice(0,this.props.truncate).join(" ");
 	if (this.props.truncate  && body > truncated) {
@@ -91,7 +101,7 @@ export default class Post extends Component {
 	var tagItems = "";
 	var categoryItem = "";
 
-	/* If there are some tags - generate tagItems  */
+	/* If there are some tags - generate tag labels  */
 	if (tags && tags.length > 0) {
 	    tagItems = tags.map((tag) => {
 		return (
@@ -105,7 +115,7 @@ export default class Post extends Component {
 	    });
 	}
 
-	/* If there's a category - generate a category item */
+	/* If there's a category - generate a category label */
 	if (category) {
 	    categoryItem = (
 		<span>

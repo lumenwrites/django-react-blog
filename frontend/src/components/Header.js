@@ -57,7 +57,7 @@ class Header extends Component {
 	    return (
 		[
 		    <Link key={1} to={{ pathname: '/post/new'}}>
-			New post
+			Write 
 		    </Link>,
 		    
 		    <Link key={2} to={{ pathname: '/logout'}}>
@@ -92,14 +92,14 @@ class Header extends Component {
 	    <header>
 		<div className="container">
 		    <div className="row">      
-			<div className="col-xs-4 col-sm-6 search">
+			<div className="col-xs-12 col-sm-6 search">
 			    <Link className="logo" to={'/'}>
 				digital<span className="bold">mind</span>
 				<img src={LogoImage}/> 				
 			    </Link>
 			</div>
-			<div className="col-xs-8 col-sm-6 main-menu">
-			    <div className="right">
+			<div className="col-xs-12 col-sm-6 main-menu">
+			    <div className="menu">
 				{ this.renderLinks() }
 				{ this.renderCategories() }
 				<Link to={'/about/'}>

@@ -45,6 +45,9 @@ class PostList extends Component {
 	
 	return posts.map((post) => {
 	    if (post.published || this.props.authenticated) {
+		/* Generate the list of posts. */
+		/* Published posts are visible to everyone,
+		   authenticated user can see both published and drafts */
 		return (
 		    <Post key={post.slug}
 			  title={post.title}

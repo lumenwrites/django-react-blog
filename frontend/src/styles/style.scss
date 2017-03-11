@@ -56,12 +56,25 @@ header {
 	font-family: 'Open Sans', sans-serif;
     }
 
+    .search, .main-menu {
+	@media  (max-width: 768px) {	
+	    text-align: center;
+	}
+    }
+
+    .menu {
+	float: right;
+	word-wrap: break-word;
+	@media  (max-width: 768px) {	
+	    float:none;
+	}	
+    }
     .logo img {
 	width: 50px;
 	margin-left: 5px;
 	margin-top: -10px;
-	@media  (max-width: 770px) {	
-	    display: none;
+	@media  (max-width: 768px) {	
+	    /* display: none; */
 	}
     }
 
@@ -76,13 +89,13 @@ header {
     .main-menu {
 	padding-top: 7px;
 	@media  (max-width: 770px) {	
-	    padding-top: 14px;
+	    /* padding-top: 14px; */
 	}
 
 	a {
 	    margin-left: 20px;
-	    @media  (max-width: 770px) {	
-		margin-left: 10px;
+	    @media  (max-width: 768px) {	
+		margin-left: 8px;
 	    }
 	    
 	}
