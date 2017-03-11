@@ -7,6 +7,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { fetchCategories, fetchSettings } from '../actions/index';
 import { subscribedClose } from '../actions/index';
 
+
 import { Button, Navbar, Nav, NavItem, Modal } from 'react-bootstrap';
 import { IndexLinkContainer, LinkContainer } from 'react-router-bootstrap';
 
@@ -14,6 +15,14 @@ import LogoImage from '../../img/digitalmind-logo.png'
 import SubscribeForm from './SubscribeForm';
 
 class Header extends Component {
+    constructor(props){
+	super(props);
+	this.state = { showModal: false };
+
+	this.openModal = this.openModal.bind(this);
+	this.closeModal = this.closeModal.bind(this);			
+    }
+    
     componentWillMount() {
 	/* call action creator */
 	/* action creator will grab the post with this id from the API   */
@@ -25,6 +34,11 @@ class Header extends Component {
 
     componentDidUpdate() {
 	if (this.props.subscribed) {
+	    /* If the modal is open - close it before showing
+	       subscription confirmation*/
+	    if (this.state.showModal){
+		this.setState({showModal:false});
+	    }
 	    /* After the user submits email, I set subscribed state to true.
 	       If it is true - wait for 2 seconds(displaying success alert),
 	       then send out the action flipping subscribed back to false. */
@@ -45,6 +59,14 @@ class Header extends Component {
 	    );
 	}
     }
+
+    openModal(){
+	this.setState({ showModal: true });
+    }
+    closeModal(){
+	this.setState({ showModal: false });
+    }
+    
     renderCategories(){
 	const categories = this.props.categories.results;
 	/* console.log("Rendering categories: " + categories);*/
@@ -114,6 +136,12 @@ class Header extends Component {
     render() {
 	return (
 	    <header>
+		<Modal show={this.state.showModal}
+		       onHide={this.closeModal}>
+		    <div className="panel subscription-box">
+			<SubscribeForm />
+		    </div>
+		</Modal>
 		{ this.renderSubscribedConfirmation () }
 		<div className="container">
 		    <div className="row">      
@@ -127,11 +155,9 @@ class Header extends Component {
 			    <div className="menu">
 				{ this.renderLinks() }
 				{ this.renderCategories() }
-				{ /*
-				<Link to={'/about/'}>
+				<a onClick={this.openModal}>
 				    Subscribe
-				</Link>
-				*/ }
+				</a>
 				<Link to={'/about/'}>
 				    About
 				</Link>

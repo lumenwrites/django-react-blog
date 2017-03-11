@@ -112,9 +112,8 @@ class PostDetail extends Component {
 			    <SubscribeForm />
 			</div>
 		    </div>
-
-
 		</div>
+		<br/>
 	    </div>	    
 	);
     }
