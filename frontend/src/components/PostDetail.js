@@ -9,6 +9,7 @@ import { PageHeader, Panel, Label, Button } from 'react-bootstrap';
 import { IndexLinkContainer, LinkContainer } from 'react-router-bootstrap';
 
 import Post from './Post';
+import SubscribeForm from './SubscribeForm';
 
 
 class PostDetail extends Component {
@@ -102,8 +103,17 @@ class PostDetail extends Component {
 		      tags={post.tags}
 		      category={post.category}/>
 		<div className="panel subscription-box">
-		    Liked this post? &nbsp;
-		    <a href="http://eepurl.com/_MSbn">Subscribe to the updates!</a>
+		    <div className="row">      
+			<div className="col-xs-12 col-sm-6 subscribe-cta">
+			    Liked this post?
+			    Subscribe to the updates!
+			</div>
+			<div className="col-xs-12 col-sm-6">
+			    <SubscribeForm />
+			</div>
+		    </div>
+
+
 		</div>
 	    </div>	    
 	);

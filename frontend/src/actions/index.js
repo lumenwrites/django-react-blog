@@ -8,6 +8,7 @@ export const DELETE_POST = 'DELETE_POST';
 export const UPDATE_POST = 'UPDATE_POST';
 export const FETCH_CATEGORIES = 'FETCH_CATEGORIES';
 export const FETCH_SETTINGS = 'FETCH_SETTINGS';
+export const CREATE_SUBSCRIBER = 'CREATE_SUBSCRIBER';
 
 const host = window.location.host.split(':')[0];
 export const ROOT_URL = 'http://' + host + ':8000/api/v1';
@@ -148,3 +149,27 @@ export function fetchSettings() {
 	     });
     };
 }
+
+
+export function createSubscriber(props) {
+    return function(dispatch) {
+	axios.post(`${ROOT_URL}/subscribe`, props)
+	     .then(response => {
+		 /* browserHistory.push('/');*/
+		 /* console.log(response);*/
+		 dispatch({
+		     type: CREATE_SUBSCRIBER,
+		     payload: response
+		 });
+	     });
+    }
+}
+
+
+export function subscribedClose() {
+    return {
+	type: 'SUBSCRIBED_CLOSE',
+	payload: false
+    }
+}
+

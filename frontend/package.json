@@ -39,6 +39,7 @@
     "lodash": "^3.10.1",
     "material-ui": "^0.16.1",
     "react": "^0.14.3",
+    "react-addons-css-transition-group": "^15.4.2",
     "react-bootstrap": "^0.30.6",
     "react-document-meta": "^2.1.1",
     "react-dom": "^0.14.3",

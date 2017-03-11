@@ -2,13 +2,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import { fetchCategories, fetchSettings } from '../actions/index';
+import { subscribedClose } from '../actions/index';
 
-import { Button, Navbar, Nav, NavItem } from 'react-bootstrap';
+import { Button, Navbar, Nav, NavItem, Modal } from 'react-bootstrap';
 import { IndexLinkContainer, LinkContainer } from 'react-router-bootstrap';
 
 import LogoImage from '../../img/digitalmind-logo.png'
+import SubscribeForm from './SubscribeForm';
 
 class Header extends Component {
     componentWillMount() {
@@ -20,7 +23,28 @@ class Header extends Component {
 	/* this.props.fetchSettings();	*/
     }
 
+    componentDidUpdate() {
+	if (this.props.subscribed) {
+	    /* After the user submits email, I set subscribed state to true.
+	       If it is true - wait for 2 seconds(displaying success alert),
+	       then send out the action flipping subscribed back to false. */
+	    const close = this.props.subscribedClose;
+	    setTimeout(function(){
+		close();
+	    }, 2000);
+	}
+    }
 
+    renderSubscribedConfirmation () {
+	/* Display success alert while subscribed state is set to true. */
+	if (this.props.subscribed) {
+	    return (
+		<div className="alert alert-success">
+		    <strong>Success!</strong> Thank you for subscribing!
+		</div>
+	    );
+	}
+    }
     renderCategories(){
 	const categories = this.props.categories.results;
 	/* console.log("Rendering categories: " + categories);*/
@@ -90,6 +114,7 @@ class Header extends Component {
     render() {
 	return (
 	    <header>
+		{ this.renderSubscribedConfirmation () }
 		<div className="container">
 		    <div className="row">      
 			<div className="col-xs-12 col-sm-6 search">
@@ -102,6 +127,11 @@ class Header extends Component {
 			    <div className="menu">
 				{ this.renderLinks() }
 				{ this.renderCategories() }
+				{ /*
+				<Link to={'/about/'}>
+				    Subscribe
+				</Link>
+				*/ }
 				<Link to={'/about/'}>
 				    About
 				</Link>
@@ -110,6 +140,9 @@ class Header extends Component {
 			</div>
 		    </div>
 		</div>
+		<Modal>
+		    Modal
+		</Modal>
 	    </header>
 	);
     }
@@ -120,7 +153,8 @@ function mapStateToProps(state) {
     return {
 	authenticated: state.auth.authenticated,
 	categories: state.categories.all,
-	settings: state.settings.all	
+	settings: state.settings.all,
+	subscribed: state.profiles.subscribed
     };
 }
-export default connect(mapStateToProps, { fetchCategories, fetchSettings })(Header);
+export default connect(mapStateToProps, { fetchCategories, fetchSettings, subscribedClose })(Header);
