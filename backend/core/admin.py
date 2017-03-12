@@ -2,4 +2,8 @@ from django.contrib import admin
 
 from .models import Settings
 
-admin.site.register(Settings)
+class SettingsAdmin(admin.ModelAdmin):
+    search_fields = ['title']
+
+admin.site.register(Settings, SettingsAdmin)
+

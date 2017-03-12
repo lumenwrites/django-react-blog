@@ -1,3 +1,5 @@
+/* This file will be used for server-side rendering */
+/* It doesn't do anything so far, right now all files are served with nginx. */
 import path from 'path'
 import Express from 'express'
 import React from 'react'
