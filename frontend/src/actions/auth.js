@@ -12,8 +12,8 @@ export function signinUser({username, password}) {
 	// .then - success, .catch - fail.
 	console.log(">>>> src/actions/auth.js:");		
 	console.log("Sending POST request from signinUser.");
-	console.log("Username: " + username);
-	console.log("Password: " + password);	
+	/* console.log("Username: " + username);
+	   console.log("Password: " + password);	*/
 	axios.post(`${ROOT_URL}/auth/`, {username, password})
 	     .then(response => {
 		 console.log("Successfully signed in!");

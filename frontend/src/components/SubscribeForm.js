@@ -31,7 +31,7 @@ class SubscribeForm extends Component {
 			type="submit">Subscribe</Button>
 		<a href="/feed/rss" className="btn rss">
 		    <FontAwesome name='rss' />
-		</a>
+		</a> 
 		<div className="clearfix"></div>
 	    </form>
 	);
