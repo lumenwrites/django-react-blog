@@ -59,12 +59,12 @@ to access the admin panel. You can add categories there, if you want to better o
 # Upcoming features
 - [X] Core settings. Meta info, analytics, about page.
 - [X] Categories
+- [X] Filter by tags.
 - [X] Drafts
 - [X] Email subscriptions.
+- [ ] Pagination.
 - [ ] Server side rendering.
 - [ ] Proper form validation.
-- [ ] Filter by tags.
-- [ ] Pagination.
 - [X] RSS
 
 # Bugs
