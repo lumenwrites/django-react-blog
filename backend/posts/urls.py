@@ -4,6 +4,7 @@ from .views import PostList, PostCreate, PostRetrieveUpdateDestroy
 from .views import TagListCreate, TagRetrieveUpdateDestroy
 
 from .feeds import MainFeed
+from .activities import posts_stream
 
 urlpatterns = [
     # List posts
@@ -15,6 +16,10 @@ urlpatterns = [
     # Create post
     url(r'^post/new$', PostCreate.as_view(), name='post_create'),
 
+    # Post Detail
+    # Not used for anything, just a hacky way to generage get_absolute_url for now.
+    url(r'^post/(?P<slug>[^\.]+)/$', PostCreate.as_view(), name='post-detail'),
+
     # Retreive/Update/Delete Post
     url(r'post/(?P<slug>[^\.]+)/$',
         PostRetrieveUpdateDestroy.as_view(),
@@ -24,6 +29,9 @@ urlpatterns = [
     url(r'tag/(?P<slug>[^\.]+)/$', TagRetrieveUpdateDestroy.as_view(), name='tag_detail'),
 
     # Atom Feed
-    url(r'^feed/rss$', MainFeed()),    
+    url(r'^feed/rss$', MainFeed()),
+    # Activities
+    url(r'^feed/posts/new$', posts_stream),
+    
 ]
 
