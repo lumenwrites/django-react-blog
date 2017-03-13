@@ -4,6 +4,8 @@ from django.http import HttpResponse, JsonResponse
 
 from .models import Post
 
+# Experimenting with ActivityPub (https://www.w3.org/TR/activitypub/)
+# Want to "decentralize" this blog. 
 
 def posts_stream(request):
     posts = Post.objects.all()

@@ -12,6 +12,7 @@ from tags.models import Tag
 from categories.models import Category
 from .serializers import PostSerializer, TagSerializer
 from .utils import add_tags
+from .activities import submit_post
 
 
 class PostList(ListAPIView):
@@ -61,9 +62,15 @@ class PostCreate(CreateAPIView):
             tag_string = ""
         if tag_string:
             post = add_tags(post, tag_string)
-                
+
         post.save()
 
+        # Ignore this.
+        # Experimenting with submitting posts using ActivityPub.
+        try:
+            submit_post(post)
+        except:
+            pass
 
 # @permission_classes((AllowAny, ))
 # @permission_classes((IsAuthenticated, ))    
