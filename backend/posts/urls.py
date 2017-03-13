@@ -16,10 +16,6 @@ urlpatterns = [
     # Create post
     url(r'^post/new$', PostCreate.as_view(), name='post_create'),
 
-    # Post Detail
-    # Not used for anything, just a hacky way to generage get_absolute_url for now.
-    url(r'^post/(?P<slug>[^\.]+)/$', PostCreate.as_view(), name='post-detail'),
-
     # Retreive/Update/Delete Post
     url(r'post/(?P<slug>[^\.]+)/$',
         PostRetrieveUpdateDestroy.as_view(),

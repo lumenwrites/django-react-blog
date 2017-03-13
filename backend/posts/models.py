@@ -52,7 +52,7 @@ class Post(models.Model):
 
     @permalink
     def get_absolute_url(self):
-        return ('post-detail', None, {'slug': self.slug })
+        return ('post_detail', None, {'slug': self.slug })
 
     
     class Meta:

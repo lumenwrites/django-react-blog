@@ -35,7 +35,7 @@ def submit_post(post):
     data['content'] = post.body
     data['attributedTo'] = 'http://digitalmind.io/@rayalez'
 
-    response = requests.post('http://localhost:8100/inbox', data=data)
+    response = requests.post('http://nexy.io/inbox', data=data)
     content = response.content    
 
 

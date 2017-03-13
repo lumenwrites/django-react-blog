@@ -72,8 +72,9 @@ class PostCreate(CreateAPIView):
         except:
             pass
 
+
+# @permission_classes((IsAuthenticated, ))
 # @permission_classes((AllowAny, ))
-# @permission_classes((IsAuthenticated, ))    
 class PostRetrieveUpdateDestroy(RetrieveUpdateDestroyAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
