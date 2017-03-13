@@ -8,7 +8,8 @@ class Pagination extends Component {
 	const currentPage = parseInt(this.props.location.query.page ?
 				     this.props.location.query.page : 1);
 	const prevPage =  currentPage - 1;
-	if (!(currentPage == 1)) {
+	
+	if (this.props.prev) {
 	    return (
 		<Link to={""}
 		      query={Object.assign({}, this.props.location.query, {page:prevPage})}>
