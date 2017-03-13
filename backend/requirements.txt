@@ -9,4 +9,6 @@ pycurl
 bleach
 beautifulsoup4
 
-Pillow		
+Pillow	
+	
+requests

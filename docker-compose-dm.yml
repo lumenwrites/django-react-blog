@@ -46,6 +46,9 @@ services:
       - ./frontend:/home/blog/frontend
     container_name: frontend
     working_dir: /home/blog/frontend
-    container_name: frontend        
+    container_name: frontend
+    links:
+      - backend
     ports:
       - '8080:8080'
+
