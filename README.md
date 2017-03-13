@@ -63,7 +63,7 @@ to access the admin panel. You can add categories there, if you want to better o
 - [X] Filter by tags.
 - [X] Drafts
 - [X] Email subscriptions.
-- [ ] Pagination.
+- [X] Pagination.
 - [ ] Server side rendering.
 - [ ] Proper form validation.
 - [X] RSS

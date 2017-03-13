@@ -6,12 +6,14 @@ import MetaTags from 'react-meta-tags';
 import { fetchSettings, fetchPosts } from '../actions/index';
 
 import Post from './Post';
+import Pagination from './Pagination';
 
 class PostList extends Component {
-
     fetchAndFilterPosts () {
+	const page = this.props.location.query.page;
 	var filter = {category: "",
-		      tag: "" };
+		      tag: "",
+		      currentPage: page };
 	if (this.props.params.category) {
 	    filter.category = this.props.params.category;
 	}
@@ -32,7 +34,8 @@ class PostList extends Component {
 
     componentDidUpdate(nextProps) {
 	if ((this.props.route.path !== nextProps.route.path) ||
-	    (nextProps.params.category !== this.props.params.category)) {
+	    (nextProps.params.category !== this.props.params.category) ||
+	    (nextProps.location.query.page !== this.props.location.query.page)) {
 	    /* If the route has changed - refetch the posts.
 	       Gotta check if route is different with the if statement,
 	       without the if statement it will fetch posts,
@@ -101,12 +104,15 @@ class PostList extends Component {
             </MetaTags>
 	);
     }
-    
+
     render() {
 	return (
 	    <div>
 		{ this.renderMetaInfo() }
 		{ this.renderPosts() }
+		<Pagination next={this.props.posts.next}
+			    prev={this.props.posts.previous} 
+			    location={this.props.location}/>
 	    </div>
 	);
     }

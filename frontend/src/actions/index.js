@@ -15,7 +15,11 @@ export const ROOT_URL = 'http://' + host + ':8000/api/v1';
 
 export function fetchPosts(filter) {
     var posts_url = `${ROOT_URL}/posts/`;
+    var page_url = "";
     if (filter) {
+	if (filter.currentPage) {
+	    page_url = "?page=" + filter.currentPage;
+	}
 	if (filter.category) {
 	    /* Posts filtered by category */
 	    posts_url = `${ROOT_URL}/category/${filter.category}`
@@ -25,10 +29,10 @@ export function fetchPosts(filter) {
 	    posts_url = `${ROOT_URL}/tag/${filter.tag}`
 	}
     }
-    
+    const url = posts_url + page_url;
     /* console.log("Fetching posts"); */
     return function(dispatch) {
-	axios.get(posts_url)
+	axios.get(url)
 	     .then(response => {
 		 /* console.log(">>>> src/actions/index.js (promise):");*/
 		 /* console.log("Successfully fetched posts.Dispatching action FETCH_POSTS");*/

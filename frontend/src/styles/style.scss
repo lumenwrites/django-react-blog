@@ -139,6 +139,23 @@ hr {
     margin-top: 0;
 }
 
+/* Pagination */
+.pagination {
+    width: 100%;
+    margin-top: 0;
+    padding: 10px;
+    text-align: center;
+
+    .fa {
+	color: $dark-gray;
+	line-height: 0;
+	font-size: 16px;
+	margin-top: 9px;
+    }
+}
+
+
+
 /* Post detail */
 article {
     margin-top: 20px;
@@ -277,7 +294,9 @@ p {
 .right {
     float: right;
 }
-
+.left {
+    float: left;
+}
 .bold {
     font-weight:bold;
 }
