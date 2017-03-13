@@ -69,6 +69,7 @@ to access the admin panel. You can add categories there, if you want to better o
 
 # Bugs
 - [ ] Sometimes post editor toolbar is yellow
+- [ ] After clicking on post, it doesn't always scroll to the beginning of the page, though it should.
 
 # Future/Maybe
 - Auto Saving.

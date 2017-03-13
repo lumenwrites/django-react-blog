@@ -5,11 +5,31 @@ import Express from 'express'
 import React from 'react'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
-import counterServer from './reducers'
-import Server from './containers/Server'
+import { renderToString } from 'react-dom/server'
+/* import counterServer from './reducers'*/
+/* import Server from './containers/Server'*/
 
 const server = new Express()
 const port = process.env.PORT || 3000
+
+function handleRender(req, res) {
+    // Create a new Redux store instance
+    const store = createStore(counterApp)
+
+    // Render the component to a string
+    const html = renderToString(
+	<Provider store={store}>
+	    <App />
+	</Provider>
+    )
+
+    // Grab the initial state from our Redux store
+    const preloadedState = store.getState()
+
+    // Send the rendered page back to the client
+    res.send(renderFullPage(html, preloadedState))
+}
+
 
 // This is fired every time the server side receives a request
 server.use(handleRender)
