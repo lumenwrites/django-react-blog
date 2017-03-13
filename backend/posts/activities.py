@@ -24,7 +24,6 @@ def posts_stream(request):
 
 
 def submit_post(post):
-
     # Generate post object(activity)
     data = {}
     data['@context'] = 'http://digitalmind.io/feed/posts/new'
@@ -34,7 +33,7 @@ def submit_post(post):
     data['content'] = post.body
     data['attributedTo'] = 'http://digitalmind.io/@rayalez'
 
-    response = requests.post('http://nexy.io', data=data)
+    response = requests.post('http://localhost:8100/inbox', data=data)
     content = response.content    
 
 
