@@ -16,7 +16,6 @@ You can check out the demo [here](). You can [login]() with username "admin" and
 
 ![Screenshot](https://raw.githubusercontent.com/raymestalez/django-react-blog/master/assets/blog-screenshot-5.png)
 
-![Screenshot](https://raw.githubusercontent.com/raymestalez/django-react-blog/master/assets/blog-screenshot-mobile.png)
 
 
 ## Installation
