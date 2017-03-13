@@ -152,6 +152,14 @@ article {
 	margin-top: 28px;
 	margin-right: 10px;
     }
+    .post-footer a {
+	&:hover {
+	    text-decoration: none;
+	}
+    }
+    .label-category {
+	background: rgba(0,0,0,0.10);
+    }
     .button-edit {
 	font-size: 22px;
 	float: right;

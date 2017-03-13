@@ -10,7 +10,7 @@ urlpatterns = [
     url(r'^posts/$', PostList.as_view(), name='post_list'),
     # List posts filtered by tag
     url(r'^tag/(?P<tag>[^\.]+)/$', PostList.as_view()),
-    url(r'^category/(?P<category>[^\.]+)/$', PostList.as_view()),    
+    url(r'^category/(?P<category>[^\.]+)/$', PostList.as_view()),
 
     # Create post
     url(r'^post/new$', PostCreate.as_view(), name='post_create'),

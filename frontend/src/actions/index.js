@@ -13,12 +13,18 @@ export const CREATE_SUBSCRIBER = 'CREATE_SUBSCRIBER';
 const host = window.location.host.split(':')[0];
 export const ROOT_URL = 'http://' + host + ':8000/api/v1';
 
-export function fetchPosts(category) {
+export function fetchPosts(filter) {
     var posts_url = `${ROOT_URL}/posts/`;
-    if (category) {
-	/* Posts filtered by category */
-	posts_url = `${ROOT_URL}/category/${category}`
-    } 
+    if (filter) {
+	if (filter.category) {
+	    /* Posts filtered by category */
+	    posts_url = `${ROOT_URL}/category/${filter.category}`
+	}
+	if (filter.tag) {
+	    /* Posts filtered by tag */
+	    posts_url = `${ROOT_URL}/tag/${filter.tag}`
+	}
+    }
     
     /* console.log("Fetching posts"); */
     return function(dispatch) {

@@ -106,10 +106,12 @@ export default class Post extends Component {
 	    tagItems = tags.map((tag) => {
 		return (
 		    <span key={tag.slug}>
-			<Label bsStyle="default">
-			    {tag.title}
-			</Label>
-			&nbsp;
+			<Link to={'/tag/' + tag.slug}>
+			    <Label bsStyle="default">
+				{tag.title}
+			    </Label>
+			    &nbsp;
+			</Link>
 		    </span>
 		);
 	    });
@@ -120,7 +122,7 @@ export default class Post extends Component {
 	    categoryItem = (
 		<span>
 		    <Link to={'/category/' + category.slug}>
-			<Label bsStyle="default">
+			<Label bsStyle="default" className="label-category">
 			    {category.title}
 			</Label>
 		    </Link>

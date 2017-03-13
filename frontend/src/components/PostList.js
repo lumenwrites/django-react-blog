@@ -8,11 +8,25 @@ import { fetchSettings, fetchPosts } from '../actions/index';
 import Post from './Post';
 
 class PostList extends Component {
+
+    fetchAndFilterPosts () {
+	var filter = {category: "",
+		      tag: "" };
+	if (this.props.params.category) {
+	    filter.category = this.props.params.category;
+	}
+	if (this.props.params.tag) {
+	    filter.tag = this.props.params.tag;
+	}	
+	
+	this.props.fetchPosts(filter);
+    }
+
     componentWillMount() {
 	/* console.log(">>>> src/components/post_list.js:");
 	   console.log("Calling fetchPosts() action creator.");		*/
 	/* Fetch posts when the app loads */
-	this.props.fetchPosts(this.props.params.category);
+	this.fetchAndFilterPosts();
 	this.props.fetchSettings();	
     }
 
@@ -29,7 +43,7 @@ class PostList extends Component {
 	       copmaring params checks if I've switched
 	       between "/category/" and "/category/some-other-category"
 	     */
-	    this.props.fetchPosts(this.props.params.category);
+	    this.fetchAndFilterPosts();	    
 	}
     }
 
