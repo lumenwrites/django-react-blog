@@ -78,10 +78,12 @@ to access the admin panel. You can add categories there, if you want to better o
 
 ## Devops
 - [ ] Don't expose 8000/8080 ports. Access them only with the nginx container.
+- [ ] Separate docker-compose files for production and development.
+- [ ] Compile and serve frontend files from the /dist directory.
 - [ ] Properly use Docker Volume API. Like [here](https://github.com/quecolectivo/server/blob/master/docker-compose-prod.yml#L12)  
 - [ ] Learn to backup DB.
 - [ ] Maybe: Copy the code into container instead of using voulmes(if it has advantaeges).
-
+- [ ] Chain together RUN commands in the Dockerfile, for efficiency.
 
 ## Future/Maybe
 - Auto Saving.
