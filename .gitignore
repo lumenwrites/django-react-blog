@@ -1,5 +1,9 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.py~
 node_modules
 npm-debug.log
 db.sqlite3
 secret
-env		
+env
