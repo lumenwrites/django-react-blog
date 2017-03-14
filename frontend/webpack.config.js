@@ -1,3 +1,26 @@
+const webpack = require('webpack'); 
+
+function getPlugins() {
+    const plugins = [];
+
+    if (process.env.NODE_ENV === "production") {
+        plugins.push(new webpack.optimize.UglifyJsPlugin({
+            minimize: true,
+            output: {
+                comments: false
+            },
+            compressor: {
+                warnings: false
+            }
+        }));
+    } else {
+        plugins.push(new webpack.HotModuleReplacementPlugin());
+    }
+
+    return plugins;
+}
+
+
 module.exports = {
     entry: [
 	'./src/index.js'
@@ -32,7 +55,8 @@ module.exports = {
 		test: /\.json$/,
 		loader: 'json-loader'
 	    }	    
-	]
+	],
+	plugins: getPlugins(),
     },
     resolve: {
 	extensions: ['', '.js', '.jsx']
