@@ -41,6 +41,8 @@ and create an admin user with:
 
 Now you can go to localhost/login url, login and begin blogging!
 
+Important: Before running it on the server, go to backend/config/env, and change "SECRET_KEY" and "POSTGRES\_PASSWORD" to something unique.
+
 To deploy it online, go to Digital Ocean, create a Docker droplet, and repeat the same commands. Then you will need to go to the networking tab, and create two A records pointing to the droplet:
 
 	yourawesomeblog.com
@@ -57,7 +59,9 @@ You can also go to:
 
 to access the admin panel. You can add categories there, if you want to better organize your posts, and you can create a settings object where you can add an about page and fill in the meta info(site title, keywords, etc).
 
-# Upcoming features
+# ToDO
+
+## Upcoming features
 - [X] Core settings. Meta info, analytics, about page.
 - [X] Categories
 - [X] Filter by tags.
@@ -68,20 +72,31 @@ to access the admin panel. You can add categories there, if you want to better o
 - [ ] Proper form validation.
 - [X] RSS
 
-# Bugs
-- [ ] Sometimes post editor toolbar is yellow
-- [ ] After clicking on post, it doesn't always scroll to the beginning of the page, though it should.
+## Bugs
+- [X] Sometimes post editor toolbar is yellow
+- [X] After clicking on post, it doesn't always scroll to the beginning of the page, though it should.
 
-# Future/Maybe
+## Devops
+- [ ] Don't expose 8000/8080 ports. Access them only with the nginx container.
+- [ ] Properly use Docker Volume API. Like [here](https://github.com/quecolectivo/server/blob/master/docker-compose-prod.yml#L12)  
+- [ ] Learn to backup DB.
+- [ ] Maybe: Copy the code into container instead of using voulmes(if it has advantaeges).
+
+
+## Future/Maybe
 - Auto Saving.
-- Docker Volume API. Properly backup DB.  
-- Decentralization(federated wordpress/medium).  
-  Add ActivityPub stream of recent posts.  
-  Fetched by nexy, used as community.
-- Export/Import data.  
-- Add nested comments.
+- Code syntax highlighting? IPython? MathJax?  
+- Create settings page where you can fill in meta info and create categories.
+- Figure out how to properly run multiple instances of the blog on one server.
+  
+- Create page that allows you to just send emails, like on medium?
+  //or just customize a notification email about new posts.
+- Themes?
+- Hosting?
+- Export/Import data?
+- Add nested comments?
 - Image upload?
-- Code syntax highlighting? IPython? MathJax?
+
 
 # Clean up
 - Pass all the speed tests.  
@@ -94,5 +109,6 @@ to access the admin panel. You can add categories there, if you want to better o
   https://seositecheckup.com
 - Write tests
 - Migrate automatically. entrypoint.sh?
+
 
 

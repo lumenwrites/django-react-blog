@@ -17,7 +17,7 @@ ReactGA.initialize('UA-44003603-16');
 function logPageView() {
     ReactGA.set({ page: window.location.pathname });
     ReactGA.pageview(window.location.pathname);
-    () => window.scrollTo(0, 0);
+    window.scrollTo(0, 0);
 }
 
 
