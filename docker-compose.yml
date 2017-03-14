@@ -32,6 +32,7 @@ services:
     links:
       - postgres
 
+
   # Frontend container (static React files, index.html and bundle.js, served with nginx)
   frontend:
     build: ./frontend
@@ -44,6 +45,7 @@ services:
     # urls(like /media or /feed/rss) to the backend
     links:
       - backend
+
 
   # This container sits in front of the others,
   # I need it because both frontend and backend containers
