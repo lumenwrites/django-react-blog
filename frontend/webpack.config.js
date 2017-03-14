@@ -11,8 +11,13 @@ function getPlugins() {
             },
             compressor: {
                 warnings: false
-            }
+              }
         }));
+        plugins.push(  new webpack.DefinePlugin({
+	    'process.env': {
+		'NODE_ENV': JSON.stringify('production')
+	    }
+	}));	
     } else {
         plugins.push(new webpack.HotModuleReplacementPlugin());
     }
