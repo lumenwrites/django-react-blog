@@ -31,6 +31,10 @@ services:
       - postgres
     links:
       - postgres
+    # Expose port to the other containers, but don't connect it to the host.
+    expose:
+      - '8000'
+
 
   # Frontend container (static React files, index.html and bundle.js, served with nginx)
   frontend:
@@ -44,6 +48,8 @@ services:
     # urls(like /media or /feed/rss) to the backend
     links:
       - backend
+    expose:
+      - '8080'
 
   # This container sits in front of the others,
   # I need it because both frontend and backend containers
