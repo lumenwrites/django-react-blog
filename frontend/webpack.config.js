@@ -61,9 +61,9 @@ module.exports = {
 		test: /\.json$/,
 		loader: 'json-loader'
 	    }	    
-	],
-	plugins: getPlugins(),
+	]
     },
+    plugins: getPlugins(),
     resolve: {
 	extensions: ['', '.js', '.jsx']
     },
