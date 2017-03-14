@@ -3,6 +3,7 @@ const webpack = require('webpack');
 function getPlugins() {
     const plugins = [];
 
+    plugins.push(new webpack.EnvironmentPlugin(['NODE_ENV']));
     if (process.env.NODE_ENV === "production") {
         plugins.push(new webpack.optimize.UglifyJsPlugin({
             minimize: true,
@@ -12,7 +13,7 @@ function getPlugins() {
             compressor: {
                 warnings: false
               }
-        }));
+        })); 
     } else {
         plugins.push(new webpack.HotModuleReplacementPlugin());
     }
