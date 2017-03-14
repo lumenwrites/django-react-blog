@@ -77,7 +77,7 @@ to access the admin panel. You can add categories there, if you want to better o
 - [X] After clicking on post, it doesn't always scroll to the beginning of the page, though it should.
 
 ## Devops
-- [ ] Don't expose 8000/8080 ports. Access them only with the nginx container.
+- [X] Don't expose 8000/8080 ports. Access them only with the nginx container.
 - [ ] Separate docker-compose files for production and development.
 - [ ] Compile and serve frontend files from the /dist directory.
 - [ ] Properly use Docker Volume API. Like [here](https://github.com/quecolectivo/server/blob/master/docker-compose-prod.yml#L12)  
