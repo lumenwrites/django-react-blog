@@ -41,6 +41,8 @@ services:
     container_name: frontend
     working_dir: /home/blog/frontend
     container_name: frontend
+    environment:
+      - NODE_ENV='production'
     # Links to the backend so that nginx could pass certain
     # urls(like /media or /feed/rss) to the backend
     links:
