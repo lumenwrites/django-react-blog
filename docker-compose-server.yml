@@ -57,5 +57,5 @@ services:
       - backend
       - frontend        
     ports:
-      - '80:8001'
+      - '8001:80'
       
