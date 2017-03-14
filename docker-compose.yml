@@ -31,9 +31,6 @@ services:
       - postgres
     links:
       - postgres
-    # Expose the ports
-    ports:
-      - '8000:8000'
 
   # Frontend container (static React files, index.html and bundle.js, served with nginx)
   frontend:
@@ -42,9 +39,11 @@ services:
       - ./frontend:/home/blog/frontend
     container_name: frontend
     working_dir: /home/blog/frontend
-    container_name: frontend        
-    ports:
-      - '8080:8080'
+    container_name: frontend
+    # Links to the backend so that nginx could pass certain
+    # urls(like /media or /feed/rss) to the backend
+    links:
+      - backend
 
   # This container sits in front of the others,
   # I need it because both frontend and backend containers

@@ -11,7 +11,7 @@ export const FETCH_SETTINGS = 'FETCH_SETTINGS';
 export const CREATE_SUBSCRIBER = 'CREATE_SUBSCRIBER';
 
 const host = window.location.host.split(':')[0];
-export const ROOT_URL = 'http://' + host + ':8000/api/v1';
+export const ROOT_URL = 'http://api.' + host + '/api/v1';
 
 export function fetchPosts(filter) {
     var posts_url = `${ROOT_URL}/posts/`;
