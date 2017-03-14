@@ -59,7 +59,7 @@ You can also go to:
 
 to access the admin panel. You can add categories there, if you want to better organize your posts, and you can create a settings object where you can add an about page and fill in the meta info(site title, keywords, etc).
 
-# ToDO
+# Todo
 
 ## Upcoming features
 - [X] Core settings. Meta info, analytics, about page.
