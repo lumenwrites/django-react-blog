@@ -90,8 +90,7 @@ to access the admin panel. You can add categories there, if you want to better o
 - Code syntax highlighting? IPython? MathJax?  
 - Create settings page where you can fill in meta info and create categories.
 - Figure out how to properly run multiple instances of the blog on one server.
-  
-- Create page that allows you to just send emails, like on medium?
+- Create page that allows you to just send emails, like on medium?  
   //or just customize a notification email about new posts.
 - Themes?
 - Hosting?
