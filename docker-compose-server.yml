@@ -1,0 +1,61 @@
+version: '2'
+
+services:
+  # Postgres container
+  postgres:
+    # Getting official postgres image
+    image: postgres:9.4
+    # Taking password, databasename, etc from the env variables file
+    env_file: ./backend/config/env
+    # Creating a volume to preserve database data
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+
+  # Backend API container
+  backend:
+    # Build by using Dockerfile in this directory
+    build: ./backend
+    # Name the container to easily attach to it
+    container_name: backend
+    # Create a volume so I could edit the code without rebuilding container
+    volumes:
+      - ./backend:/home/blog/backend
+    # Taking password, databasename, etc from the env variables file    
+    env_file: ./backend/config/env
+    # Switch to this directory
+    working_dir: /home/blog/backend
+    # Run this command on start up, to launch a supervisor
+    command: supervisord -n
+    # Connect it to the postgres container
+    depends_on:
+      - postgres
+    links:
+      - postgres
+
+  # Frontend container (static React files, index.html and bundle.js, served with nginx)
+  frontend:
+    build: ./frontend
+    volumes:
+      - ./frontend:/home/blog/frontend
+    container_name: frontend
+    working_dir: /home/blog/frontend
+    container_name: frontend
+    # Links to the backend so that nginx could pass certain
+    # urls(like /media or /feed/rss) to the backend
+    links:
+      - backend
+
+  # This container sits in front of the others,
+  # I need it because both frontend and backend containers
+  # can't connect to the port 80 at the same time
+  nginx_proxy:
+    build: ./nginx_proxy
+    container_name: nginx_proxy
+    # See the file nginx_proxy.conf
+    # It uses these links to connect you to the two containers
+    links:
+      - backend
+      - frontend        
+    ports:
+      - '80:8001'
+      
