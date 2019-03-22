@@ -17,6 +17,7 @@ RUN pip3 install uwsgi
 # Copy and Install requirements
 # (before copying the rest of the code, so docker would cache them and not reinstall)
 WORKDIR $BACKENDDIR
+RUN apt-get install -y libssl-dev
 COPY requirements.txt .
 RUN pip3 install -r requirements.txt
 
