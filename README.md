@@ -16,6 +16,9 @@ You can check out the demo [here](). You can [login]() with username "admin" and
 
 ![Screenshot](https://raw.githubusercontent.com/raymestalez/django-react-blog/master/assets/blog-screenshot-5.png)
 
+## Pre-requirements
+- [Docker](https://docs.docker.com/installation/) 
+- [Docker Compose](https://docs.docker.com/compose/install/)
 
 
 ## Installation
@@ -25,7 +28,7 @@ Installing and running this blog is very simple. Clone this repo, and then simpl
 	docker-compose up
 	(use -d flag to run it in the background)
 
-After that, the blog will be running on the localhost. Isn't Docker amazing? =)
+After that, the blog will be running on the localhost, just navigate to `http://localhost/`. Isn't Docker amazing? =)
 
 You will also need to attach to the container by running this:
 
@@ -33,13 +36,15 @@ You will also need to attach to the container by running this:
 
 run migrations:
 
-	python3.5 manage.py migrate
+	python3.6 manage.py migrate
 
 and create an admin user with:
 
-	python3.5 manage.py createsuperuser
+	python3.6 manage.py createsuperuser
 
 Now you can go to localhost/login url, login and begin blogging!
+
+## Thinking of production environment
 
 Important: Before running it on the server, go to backend/config/env, and change "SECRET_KEY" and "POSTGRES\_PASSWORD" to something unique.
 
