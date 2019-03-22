@@ -21,7 +21,6 @@ RUN apt-get install -y nginx
 RUN apt-get install -y supervisor
 RUN apt-get install -y libpq-dev
 RUN apt-get install -y libcurl4-openssl-dev
-RUN apt-get install -y libcurl4-openssl-dev
 RUN apt-get install -y libssl-dev
 
 ################################################
