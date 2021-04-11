@@ -5,6 +5,7 @@ MAINTAINER Ray Alez
 ENV HOMEDIR=/home
 ENV PROJECTDIR=/home/blog
 ENV BACKENDDIR=/home/blog/backend
+ENV DEBIAN_FRONTEND=noninteractive
 
 # Install basic apps
 RUN apt-get update && apt-get install -y git emacs curl iputils-ping
